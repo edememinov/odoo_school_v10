@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <act_window id="action_finance_product"
+            name="Product"
+            res_model="finance.product"
+            view_mode="tree,form"
+        />
+
+
+
+        <menuitem id="menu_finance_product"
+            name="Product"
+            sequence="20"
+            action="action_finance_product" />
+
+    </data>
+</openerp>

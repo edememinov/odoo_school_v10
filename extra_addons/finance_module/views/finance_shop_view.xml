@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <act_window id="action_finance_shop"
+            name="Shop"
+            res_model="finance.shop"
+            view_mode="tree,form"
+        />
+
+
+
+        <menuitem id="menu_finance_shop"
+            name="Shop"
+            sequence="20"
+            action="action_finance_shop" />
+
+    </data>
+</openerp>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="finance_bank_form" model="ir.ui.view">
+            <field name="name">finance.bank.form</field>
+            <field name="model">finance.bank</field>
+            <field name="arch" type="xml">
+                <form string="Banking" >
+
+                    <group name="top">
+                        <group name="left">
+                            <field name="income_id">
+                                <field name="date"/>
+                                <field name="amount_received"/>
+                                <field name="received_from"/>
+                            </field>
+                            <field name="computed_total_income"/>
+                        </group>
+                        <group name="right">
+                            <field name="expense_id">
+                                <field name="date"/>
+                                <field name="total_price"/>
+                            </field>
+                            <field name="computed_total_expense"/>
+                        </group>
+                    </group>
+                    <group name="bottom">
+                        <field name="computed_total"/>
+                        <field name="date"/>
+                    </group>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_tree_banking" model="ir.ui.view">
+            <field name="name">Banking Tree view</field>
+            <field name="model">finance.bank</field>
+            <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="computed_total_expense"/>
+                <field name="computed_total_income"/>
+            </tree>
+            </field>
+        </record>
+
+        <act_window id="action_finance_bank"
+            name="Bank"
+            res_model="finance.bank"
+            view_mode="tree,form"
+            context="{'group_by':'date'}"
+        />
+
+
+
+        <menuitem id="menu_finance_bank"
+            name="Bank"
+            sequence="20"
+            action="action_finance_bank" />
+
+    </data>
+</openerp>
