@@ -5,4 +5,4 @@ class FinanceShop(models.Model):
     _description = "Shops"
 
     name = fields.Char("Shop name")
-    shop_type = fields.Selection([('food', 'Food'), ('clothing', 'Clothing'), ('electronic','Electronic'), ('furniture','Furniture'), ('rest','Rest')])
+

@@ -10,5 +10,5 @@ class FinanceIncome(models.Model):
     date = fields.Date("Date")
     amount_received = fields.Float("Amount received")
     received_from = fields.Char("Received from")
-    bank_id = fields.Many2one('finance.bank')
+    person = fields.Many2many('res.partner')
 

@@ -9,7 +9,7 @@ class FinanceExpense(models.Model):
     date = fields.Date("Date")
     total_price = fields.Float(compute='_compute_total_price')
     expenseline = fields.One2many('finance.expense.line', 'order_id', "Products")
-    bank_id = fields.Many2one('finance.bank')
+    person = fields.Many2many('res.partner')
 
     @api.depends('expenseline.product_price')
     def _compute_total_price(self):

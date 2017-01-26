@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <record id="finance_bank_form" model="ir.ui.view">
+            <field name="name">finance.bank.form</field>
+            <field name="model">finance.bank</field>
+            <field name="arch" type="xml">
+                <form string="Banking" >
+
+                    <group name="top">
+                        <group name="left">
+                            <field name="name"/>
+                            <field name="price"/>
+                        </group>
+                        <group name="right">
+                            <field name="store"/>
+                            <field name="is_non_food"/>
+                        </group>
+                    </group>
+                    <group name="bottom">
+                        <field name="type_food" attrs="{'invisible': [('is_non_food', '=', False)]}"/>
+                        <field name="type_non_food" attrs="{'invisible': [('is_non_food', '=', True)]}"/>
+                    </group>
+
+                </form>
+            </field>
+        </record>
 
         <act_window id="action_finance_product"
             name="Product"
