@@ -7,9 +7,9 @@ class FinanceBank(models.Model):
     _description = "Bank"
     _order = 'date'
 
-    computed_total_expense = fields.Float(compute='compute_total_expense')
-    computed_total_income = fields.Float(compute='compute_total_income')
-    computed_total = fields.Float(compute='compute_total')
+    computed_total_expense = fields.Float(compute='compute_total_expense', store=True)
+    computed_total_income = fields.Float(compute='compute_total_income', store=True)
+    computed_total = fields.Float(compute='compute_total', store=True)
     income_id = fields.Many2many('finance.income')
     expense_id = fields.Many2many('finance.expense')
     date = fields.Date('Date')
