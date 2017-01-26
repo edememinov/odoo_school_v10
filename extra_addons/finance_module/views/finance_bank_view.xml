@@ -40,7 +40,6 @@
             <field name="arch" type="xml">
                 <graph type="pivot">
                     <field name="computed_total" type="meausre" />
-                    <field name="by" type="row" />
                     <field name="date" interval="month" />
                     <field name="computed_total_expense" type="meausre" />
                     <field name="computed_total_income" type="meausre" />
