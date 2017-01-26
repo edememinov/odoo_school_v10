@@ -84,8 +84,8 @@
             sequence="20"
             action="action_finance_bank" />
 
-        <menuitem id="menu_finance_bank"
-            name="Bank"
+        <menuitem id="menu_finance_bank_dashboard"
+            name="Bank Dashboard"
             sequence="20"
             action="action_finance_bank_dashboard" />
 
