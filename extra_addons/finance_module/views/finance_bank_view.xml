@@ -34,8 +34,8 @@
             </field>
         </record>
 
-        <record id="view_graph_bank_task" model="ir.ui.view">
-            <field name="name">view_graph_bank_task</field>
+        <record id="view_graph_bank" model="ir.ui.view">
+            <field name="name">view_graph_bank</field>
             <field name="model">finance.bank</field>
             <field name="arch" type="xml">
                 <graph type="pivot">
@@ -71,7 +71,7 @@
             <field name="name">Bank Graph</field>
             <field name="res_model">finance.bank</field>
             <field name="view_mode">graph</field>
-            <field name="view_id" ref="view_graph_bank_task"/>
+            <field name="view_id" ref="view_graph_bank"/>
         </record>
 
 
