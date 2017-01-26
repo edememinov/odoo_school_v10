@@ -51,7 +51,7 @@
         <act_window id="action_finance_bank"
             name="Bank"
             res_model="finance.bank"
-            view_mode="tree,form"
+            view_mode="tree,form, graph"
             context="{'group_by':'by'}"
         />
 
