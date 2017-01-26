@@ -5,6 +5,7 @@ from odoo import api, fields, models
 class FinanceBank(models.Model):
     _name = "finance.bank"
     _description = "Bank"
+    _order = 'date'
 
     computed_total_expense = fields.Float(compute='compute_total_expense')
     computed_total_income = fields.Float(compute='compute_total_income')
