@@ -34,17 +34,17 @@
         </record>
 
 
-        <!--<record id="view_tree_banking" model="ir.ui.view">-->
-            <!--<field name="name">Banking Tree view</field>-->
-            <!--<field name="model">finance.bank</field>-->
-            <!--<field name="arch" type="xml">-->
-            <!--<tree>-->
-                <!--<field name="date"/>-->
-                <!--<field name="computed_total_expense"/>-->
-                <!--<field name="computed_total_income"/>-->
-            <!--</tree>-->
-            <!--</field>-->
-        <!--</record>-->
+        <record id="view_tree_banking" model="ir.ui.view">
+            <field name="name">Banking Tree view</field>
+            <field name="model">finance.bank</field>
+            <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="computed_total_expense"/>
+                <field name="computed_total_income"/>
+            </tree>
+            </field>
+        </record>
 
         <act_window id="action_finance_bank"
             name="Bank"
