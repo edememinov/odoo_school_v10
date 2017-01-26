@@ -67,7 +67,15 @@
             res_model="finance.bank"
             view_mode="graph,tree,form"
             context="{'group_by':'date'}"
+             view_id=""
         />
+
+        <record model="ir.actions.act_window" id="action_finance_bank_dashboard">
+            <field name="name">Bank Graph</field>
+            <field name="res_model">finance.bank</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_graph_bank_task"/>
+        </record>
 
 
 
@@ -75,6 +83,11 @@
             name="Bank"
             sequence="20"
             action="action_finance_bank" />
+
+        <menuitem id="menu_finance_bank"
+            name="Bank"
+            sequence="20"
+            action="action_finance_bank_dashboard" />
 
     </data>
 </openerp>
