@@ -18,8 +18,8 @@
                         </group>
                     </group>
                     <group name="bottom">
-                        <field name="type_food" attrs="{'invisible': [('is_non_food', '=', False)]}"/>
-                        <field name="type_non_food" attrs="{'invisible': [('is_non_food', '=', True)]}"/>
+                        <field name="type_food" attrs="{'invisible': [('is_non_food', '=', True)]}"/>
+                        <field name="type_non_food" attrs="{'invisible': [('is_non_food', '=', False)]}"/>
                     </group>
 
                 </form>
