@@ -39,8 +39,7 @@
             <field name="model">finance.bank</field>
             <field name="arch" type="xml">
                 <graph type="pivot">
-                    <field name="computed_total" type="meausre" />
-                    <field name="date" interval="month" />
+                    <field name="computed_total" type="row" />
                     <field name="computed_total_expense" type="meausre" />
                     <field name="computed_total_income" type="meausre" />
                 </graph>
