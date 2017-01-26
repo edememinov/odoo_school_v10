@@ -52,7 +52,7 @@
             name="Bank"
             res_model="finance.bank"
             view_mode="tree,form, graph"
-            context="{'group_by':'by'}"
+            context="{'group_by':'date'}"
         />
 
 
