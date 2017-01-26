@@ -9,8 +9,8 @@ class FinanceBank(models.Model):
     computed_total_expense = fields.Float(compute='compute_total_expense')
     computed_total_income = fields.Float(compute='compute_total_income')
     computed_total = fields.Float(compute='compute_total')
-    income_id = fields.Many2many('finance.income', 'bank_id')
-    expense_id = fields.Many2many('finance.expense', 'bank_id')
+    income_id = fields.Many2many('finance.income')
+    expense_id = fields.Many2many('finance.expense')
     date = fields.Date('Date')
     by = fields.Many2many('res.partner', help="Edem or Dominika")
 
