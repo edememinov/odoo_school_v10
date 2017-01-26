@@ -12,7 +12,7 @@ class FinanceBank(models.Model):
     income_id = fields.Many2many('finance.income', 'bank_id')
     expense_id = fields.Many2many('finance.expense', 'bank_id')
     date = fields.Date('Date')
-    by = fields.Many2many('Owner', help="Edem or Dominika")
+    by = fields.Many2many('res.partner','Owner', help="Edem or Dominika")
 
 
 
