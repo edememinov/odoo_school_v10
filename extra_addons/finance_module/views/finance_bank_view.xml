@@ -42,6 +42,7 @@
                     <field name="computed_total" type="measure" />
                     <field name="computed_total_expense" type="meausre" />
                     <field name="computed_total_income" type="meausre" />
+                    <field name="date" type="row"/>
                 </graph>
             </field>
         </record>
