@@ -1,5 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_ unlink access_todo_task_group_user,finance.bank.user,model_finance_bank,base.group_ user,1,1,1,1
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_ unlink access_todo_task_group_user,finance.expense.user,model_finance_expense,base.group_ user,1,1,1,1
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_ unlink access_todo_task_group_user,finance.income.user,model_finance_income,base.group_ user,1,1,1,1
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_ unlink access_todo_task_group_user,finance.product.user,model_finance_product,base.group_ user,1,1,1,1
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_ unlink access_todo_task_group_user,finance.shop.user,model_finance_shop,base.group_ user,1,1,1,1
