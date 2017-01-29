@@ -13,8 +13,21 @@ class FinanceBank(models.Model):
     income_id = fields.Many2many('finance.income')
     expense_id = fields.Many2many('finance.expense')
     date = fields.Date('Date')
+    products = fields.Many2many(compute='products_in_expense')
 
 
+
+
+
+    @api.one
+    @api.depends('expense_id.expenseline.product')
+    def products_in_expense(self):
+        self.ensure_one()
+        for banks in self:
+            for expenses in banks:
+                for expenselines in expenses:
+                    for products in expenselines:
+                        self.products += products
 
     @api.one
     @api.depends('expense_id.total_price')
