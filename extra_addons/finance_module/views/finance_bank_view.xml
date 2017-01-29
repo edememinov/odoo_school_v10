@@ -27,7 +27,6 @@
                     <group name="bottom">
                         <field name="computed_total"/>
                         <field name="date"/>
-                        <field name="by"/>
                     </group>
 
                 </form>
@@ -57,7 +56,6 @@
                 <field name="date"/>
                 <field name="computed_total_expense"/>
                 <field name="computed_total_income"/>
-                <field name="by"/>
             </tree>
             </field>
         </record>
