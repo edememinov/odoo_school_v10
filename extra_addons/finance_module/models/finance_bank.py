@@ -20,7 +20,7 @@ class FinanceBank(models.Model):
 
 
     @api.one
-    @api.depends('expense_id.expenseline.product')
+    @api.depends('expense_id.expenseline.product_id')
     def products_in_expense(self):
         self.ensure_one()
         for banks in self:
