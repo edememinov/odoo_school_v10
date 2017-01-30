@@ -13,7 +13,7 @@ class FinanceBank(models.Model):
     income_id = fields.Many2many('finance.income')
     expense_id = fields.Many2many('finance.expense')
     date = fields.Date('Date')
-    products = fields.Many2many('finance.product', compute='products_in_expense', readonly=True)
+    products = fields.Many2many('finance.product', compute='products_in_expense', readonly=True, store=True)
 
 
 
