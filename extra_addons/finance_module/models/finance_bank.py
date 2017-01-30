@@ -24,9 +24,9 @@ class FinanceBank(models.Model):
     def products_in_expense(self):
         self.ensure_one()
         for banks in self:
-            for expenses in banks:
-                for expenselines in expenses:
-                    for products in expenselines:
+            for expenses in banks.expense_id:
+                for expenselines in expenses.expenseline:
+                    for products in expenselines.product_id:
                         self.products += products
 
     @api.one
