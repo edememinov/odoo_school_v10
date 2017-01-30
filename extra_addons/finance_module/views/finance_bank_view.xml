@@ -10,16 +10,20 @@
                     <group name="top">
                         <group name="left">
                             <field name="income_id">
-                                <field name="date"/>
-                                <field name="amount_received"/>
-                                <field name="received_from"/>
+                                <tree>
+                                    <field name="date"/>
+                                    <field name="amount_received"/>
+                                    <field name="received_from"/>
+                                </tree>
                             </field>
                             <field name="computed_total_income"/>
                         </group>
                         <group name="right">
                             <field name="expense_id">
-                                <field name="date"/>
-                                <field name="total_price"/>
+                                <tree>
+                                    <field name="date"/>
+                                    <field name="total_price"/>
+                                </tree>
                             </field>
                             <field name="computed_total_expense"/>
                         </group>
@@ -28,7 +32,13 @@
                         <field name="computed_total"/>
                         <field name="date"/>
 
-                        <field name="products"/>
+                        <field name="products">
+                            <tree>
+                                <field name="product_name"/>
+                                <field name="price"/>
+                                <field name="store"/>
+                            </tree>
+                        </field>
                     </group>
 
                 </form>
@@ -54,11 +64,11 @@
             <field name="name">Banking Tree view</field>
             <field name="model">finance.bank</field>
             <field name="arch" type="xml">
-            <tree>
-                <field name="date"/>
-                <field name="computed_total_expense"/>
-                <field name="computed_total_income"/>
-            </tree>
+                <tree>
+                    <field name="date"/>
+                    <field name="computed_total_expense"/>
+                    <field name="computed_total_income"/>
+                </tree>
             </field>
         </record>
 
