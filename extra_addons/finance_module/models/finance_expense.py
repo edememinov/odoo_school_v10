@@ -30,11 +30,11 @@ class FinanceExpenseLine(models.Model):
     order_id = fields.Many2one('finance.expense', readonly=True)
     price_per_product = fields.Float("Price for product", related='product.price', readonly=True)
     product_price = fields.Float(compute='_compute_total_product_price', readonly=True)
-    amount = fields.Integer('Amount', default=1)
+    amount = fields.Integer('Amount')
 
     @api.one
     @api.depends('amount', 'price_per_product')
     def _compute_total_product_price(self):
         self.ensure_one()
         for x in self:
-            x.price_per_product = x.amount * x.product_price
+            x.product_price = x.amount * x.price_per_product
