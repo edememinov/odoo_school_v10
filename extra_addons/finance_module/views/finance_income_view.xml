@@ -8,11 +8,8 @@
             <field name="arch" type="xml">
             <tree>
                 <field name="date"/>
-                <field name="amount"/>
-                <field name="store"/>
-                <field name="received" attrs="{'invisible': 1}"/>
-                <field name="person" attrs="{'invisible': [('is_non_food', '=', True)]}"/>
-                <field name="type_non_food" attrs="{'invisible': [('is_non_food', '=', False)]}"/>
+                <field name="amount_received"/>
+                <field name="received_from"/>
             </tree>
             </field>
         </record>
