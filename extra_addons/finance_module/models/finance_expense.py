@@ -25,7 +25,7 @@ class FinanceExpenseLine(models.Model):
     _description = "Expenses Line"
 
     name = fields.Char("Name of product", related='product.product_name', readonly=True)
-    product = fields.Many2one('finance.product', 'product_name')
+    product = fields.Many2one('finance.product', 'Product')
     order_id = fields.Many2one('finance.expense', readonly=True)
     product_price = fields.Float("Price for product", related='product.price', readonly=True)
 
