@@ -32,9 +32,6 @@
                 <field name="product_name"/>
                 <field name="price"/>
                 <field name="store"/>
-                <!--<field name="is_non_food" attrs="{'invisible': 1}"/>-->
-                <!--<field name="type_food" attrs="{'invisible': [('is_non_food', '=', True)]}"/>-->
-                <!--<field name="type_non_food" attrs="{'invisible': [('is_non_food', '=', False)]}"/>-->
             </tree>
             </field>
         </record>
