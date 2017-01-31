@@ -40,3 +40,5 @@ class FinanceExpenseLine(models.Model):
         for x in self:
             x.product_price = x.amount * x.price_per_product
 
+        return x.product_price
+
