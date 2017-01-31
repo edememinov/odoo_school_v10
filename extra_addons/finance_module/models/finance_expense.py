@@ -34,7 +34,7 @@ class FinanceExpenseLine(models.Model):
 
     @api.one
     @api.depends('amount', 'product_price')
-    def _compute_total_price(self):
+    def _compute_total_product_price(self):
         self.ensure_one()
         for x in self:
             x.product_price = x.amount * x.price_per_product
