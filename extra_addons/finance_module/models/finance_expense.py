@@ -10,8 +10,10 @@ class FinanceExpense(models.Model):
     total_price = fields.Float(compute='_compute_total_price', readonly=True)
     expenseline = fields.One2many('finance.expense.line', 'order_id', "Products")
 
+    @api.one
     @api.depends('expenseline.product_price')
     def _compute_total_price(self):
+        self.ensure_one()
         for x in self:
             for line in x.expenseline:
                 self.total_price += line.product_price
