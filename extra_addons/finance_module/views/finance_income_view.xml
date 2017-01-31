@@ -2,9 +2,9 @@
 <openerp>
     <data>
 
-        <record id="view_tree_product" model="ir.ui.view">
-            <field name="name">Product Tree view</field>
-            <field name="model">finance.product</field>
+        <record id="view_tree_income" model="ir.ui.view">
+            <field name="name">Income Tree view</field>
+            <field name="model">finance.income</field>
             <field name="arch" type="xml">
             <tree>
                 <field name="date"/>
