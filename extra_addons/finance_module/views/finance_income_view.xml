@@ -2,6 +2,21 @@
 <openerp>
     <data>
 
+        <record id="view_tree_product" model="ir.ui.view">
+            <field name="name">Product Tree view</field>
+            <field name="model">finance.product</field>
+            <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="amount"/>
+                <field name="store"/>
+                <field name="received" attrs="{'invisible': 1}"/>
+                <field name="person" attrs="{'invisible': [('is_non_food', '=', True)]}"/>
+                <field name="type_non_food" attrs="{'invisible': [('is_non_food', '=', False)]}"/>
+            </tree>
+            </field>
+        </record>
+
         <act_window id="action_finance_income"
             name="Income"
             res_model="finance.income"
