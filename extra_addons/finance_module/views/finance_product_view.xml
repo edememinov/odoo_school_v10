@@ -63,7 +63,7 @@
 
         <act_window id="action_finance_type_food"
             name="Type Food"
-            res_model="finance.type.food"
+            res_model="finanace.type.food"
             view_mode="tree,form"
         />
 
@@ -77,7 +77,7 @@
 
         <act_window id="action_finance_type_non_food"
             name="Type Non Food"
-            res_model="finance.type.non.food"
+            res_model="finanace.type.non.food"
             view_mode="tree,form"
         />
 
