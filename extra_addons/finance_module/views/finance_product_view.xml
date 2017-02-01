@@ -82,7 +82,7 @@
         />
 
         <menuitem id="menu_finance_type_non_food"
-            name="Product"
+            name="Type Non Food"
             sequence="20"
             action="action_finance_type_non_food"
             parent="menu_finance_types"
