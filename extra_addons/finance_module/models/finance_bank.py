@@ -19,10 +19,9 @@ class FinanceBank(models.Model):
 
 
 
-    @api.one
+    @api.multi
     @api.depends('expense_id.expenseline.product_id')
     def products_in_expense(self):
-        self.ensure_one()
         for banks in self:
             for expenses in banks.expense_id:
                 for expenselines in expenses.expenseline:
