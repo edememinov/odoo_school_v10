@@ -51,7 +51,7 @@
             <field name="model">finance.bank</field>
             <field name="arch" type="xml">
                 <graph type="pivot">
-                    <field name="product"/>
+                    <field name="products"/>
                     <field name="amount" type="measure" />
                     <field name="computed_total_expense" type="measure" />
                     <field name="computed_total_income" type="measure" />
