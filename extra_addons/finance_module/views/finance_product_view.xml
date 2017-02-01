@@ -6,9 +6,10 @@
             <field name="model">finance.product</field>
             <field name="arch" type="xml">
                 <form string="Banking" >
+
                     <group name="top">
                         <group name="left">
-                            <field name="product_name"/>
+                            <field name="name"/>
                             <field name="price"/>
                         </group>
                         <group name="right">
@@ -20,33 +21,10 @@
                         <field name="type_food" attrs="{'invisible': [('is_non_food', '=', True)]}"/>
                         <field name="type_non_food" attrs="{'invisible': [('is_non_food', '=', False)]}"/>
                     </group>
+
                 </form>
             </field>
         </record>
-
-        <record id="view_tree_product" model="ir.ui.view">
-            <field name="name">Product Tree view</field>
-            <field name="model">finance.product</field>
-            <field name="arch" type="xml">
-            <tree>
-                <field name="product_name"/>
-                <field name="price"/>
-                <field name="store"/>
-            </tree>
-            </field>
-        </record>
-
-        <record id="product_search_view" model="ir.ui.view">
-			<field name="name">product.search.view</field>
-			<field name="model">finance.product</field>
-			<field name="arch" type="xml">
-				<search string="Products">
-					<field name="product_name"/>
-					<field name="price"/>
-					<field name="store"/>
-				</search>
-			</field>
-		</record>
 
         <act_window id="action_finance_product"
             name="Product"
