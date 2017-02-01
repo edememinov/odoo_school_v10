@@ -22,7 +22,6 @@ class FinanceExpenseLine(models.Model):
     _name = "finance.expense.line"
     _description = "Expenses Line"
 
-    # name = fields.Char("Name of product", related='product_id.name')
     product_id = fields.Many2one('finance.product')
     order_id = fields.Many2one('finance.expense')
     price_per_product = fields.Float("Price for product", related='product_id.price', readonly=True)
@@ -34,7 +33,4 @@ class FinanceExpenseLine(models.Model):
     @api.depends('amount', 'price_per_product')
     def _compute_total_product_price(self):
         for x in self:
-            if x.amount == 1:
-                x.product_price = x.price_per_product
-            else:
-                x.product_price = x.amount * x.price_per_product
+            x.product_price = x.amount * x.price_per_product
