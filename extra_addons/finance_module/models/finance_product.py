@@ -17,12 +17,12 @@ class TypeFoodProduct(models.Model):
     _name = 'finanace.type.food'
     _description = "Food types"
 
-    type = fields.Char('Food type')
+    name = fields.Char('Food type')
 
 
 class TypeNonFoodProduct(models.Model):
     _name = 'finanace.type.non.food'
     _description = "Non food types"
 
-    type = fields.Char('Non food type')
+    name = fields.Char('Non food type')
 
