@@ -14,17 +14,7 @@ class FinanceBank(models.Model):
     expense_id = fields.Many2many('finance.expense')
     date = fields.Date('Date')
     products = fields.Many2many('finance.product', compute='products_in_expense', readonly=True, store=True)
-    product_types = fields.Char(compute='compute_product_type', store=True)
 
-    @api.one
-    @api.depends('expense_id.expenseline.product_id')
-    def compute_product_type(self):
-        self.ensure_one()
-        for banks in self:
-            for expenses in banks.expense_id:
-                for expenselines in expenses.expenseline:
-                    for products in expenselines.product_id.name:
-                        banks.product_type += products
 
     @api.one
     @api.depends('expense_id.expenseline.product_id')

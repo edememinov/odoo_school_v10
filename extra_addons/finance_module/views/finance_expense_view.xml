@@ -24,9 +24,9 @@
             <field name="model">finance.expense.line</field>
             <field name="arch" type="xml">
                <tree>
-                   <field name="product_id"/>
-                   <field name="amount"/>
-                   <field name="price_per_product"/>
+                   <field name="name"/>
+                   <field name="total_price"/>
+                   <field name="expenseline"/>
                    <field name="product_price"/>
                </tree>
             </field>
