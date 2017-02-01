@@ -2,6 +2,18 @@
 <openerp>
     <data>
 
+        <record id="view_tree_income" model="ir.ui.view">
+            <field name="name">Income Tree view</field>
+            <field name="model">finance.income</field>
+            <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="amount_received"/>
+                <field name="received_from"/>
+            </tree>
+            </field>
+        </record>
+
         <act_window id="action_finance_income"
             name="Income"
             res_model="finance.income"

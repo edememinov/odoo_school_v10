@@ -9,7 +9,6 @@ class FinanceExpense(models.Model):
     date = fields.Date("Date")
     total_price = fields.Float(compute='_compute_total_price')
     expenseline = fields.One2many('finance.expense.line', 'order_id', "Products")
-    person = fields.Many2many('res.partner')
 
     @api.depends('expenseline.product_price')
     def _compute_total_price(self):
@@ -26,5 +25,13 @@ class FinanceExpenseLine(models.Model):
     name = fields.Char("Name of product", related='product_id.name')
     product_id = fields.Many2one('finance.product')
     order_id = fields.Many2one('finance.expense')
-    product_price = fields.Float("Price for product", related='product_id.price')
+    price_per_product = fields.Float("Price for product", related='product.price', readonly=True)
+    product_price = fields.Float(compute='_compute_total_product_price', readonly=True)
+    amount = fields.Integer('Amount')
 
+
+    @api.multi
+    @api.depends('amount', 'price_per_product')
+    def _compute_total_product_price(self):
+        for x in self:
+            x.product_price = x.amount * x.price_per_product

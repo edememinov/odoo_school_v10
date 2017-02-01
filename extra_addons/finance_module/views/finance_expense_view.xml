@@ -2,6 +2,54 @@
 <openerp>
     <data>
 
+        <record id="finance_expenseline_form" model="ir.ui.view">
+            <field name="name">finance.expenseline.form</field>
+            <field name="model">finance.expense.line</field>
+            <field name="arch" type="xml">
+                <form string="Expenseline" >
+                    <group name="top">
+                        <group name="left">
+                            <field name="product"/>
+                        </group>
+                        <group name="right">
+                            <field name="product_price"/>
+                            <field name="product_name"/>
+                            <field name="amount"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="finance_expense_form" model="ir.ui.view">
+            <field name="name">finance.expense.form</field>
+            <field name="model">finance.expense</field>
+            <field name="arch" type="xml">
+                <form string="Expense" >
+                    <group name="top">
+                        <group name="left">
+                            <field name="date"/>
+                            <field name="total_price"/>
+                        </group>
+                        <group name="right">
+                            <field name="expenseline"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tree_expense" model="ir.ui.view">
+            <field name="name">Expense Tree view</field>
+            <field name="model">finance.expense</field>
+            <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="total_price"/>
+            </tree>
+            </field>
+        </record>
+
         <act_window id="action_finance_expense"
             name="Expense"
             res_model="finance.expense"
