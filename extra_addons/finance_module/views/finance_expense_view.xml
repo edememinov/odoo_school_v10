@@ -26,7 +26,6 @@
                <tree>
                    <field name="name"/>
                    <field name="total_price"/>
-                   <field name="expenseline"/>
                    <field name="product_price"/>
                </tree>
             </field>
