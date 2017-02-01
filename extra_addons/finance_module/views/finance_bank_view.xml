@@ -68,6 +68,10 @@
                     <field name="price_per_product" type="measure" />
                     <field name="product_price" type="measure" />
                     <field name="amount" type="measure" />
+                    <field name="product_is_food"/>
+                    <field name="product_food_type" />
+                    <field name="product_food_non_food" />
+
                 </graph>
             </field>
         </record>

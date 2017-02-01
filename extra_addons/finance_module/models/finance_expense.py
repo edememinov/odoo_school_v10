@@ -30,6 +30,10 @@ class FinanceExpenseLine(models.Model):
     price_per_product = fields.Float("Price for product", related='product_id.price', readonly=True, store=True)
     product_price = fields.Float(compute='_compute_total_product_price', readonly=True, store=True)
     amount = fields.Integer('Amount', default=1)
+    product_is_food = fields.Boolean(related='product_id.is_food', store=True)
+    product_food_type = fields.Many2one(related='product_id.type_food', store=True)
+    product_food_non_food = fields.Many2one(related='product_id.type_non_food', store=True)
+
 
 
     @api.one
