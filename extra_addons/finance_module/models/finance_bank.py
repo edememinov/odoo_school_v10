@@ -28,27 +28,24 @@ class FinanceBank(models.Model):
                     for products in expenselines.product_id:
                         self.products += products
 
-    @api.one
+    @api.multi
     @api.depends('expense_id.total_price')
     def compute_total_expense(self):
-        self.ensure_one()
         for x in self:
             for expense in x.expense_id:
                 self.computed_total_expense += expense.total_price
 
 
-    @api.one
+    @api.multi
     @api.depends('income_id.amount_received')
     def compute_total_income(self):
-        self.ensure_one()
         for z in self:
             for income in z.income_id:
                 self.computed_total_income += income.amount_received
 
-    @api.one
+    @api.multi
     @api.depends('computed_total_expense', 'computed_total_income')
     def compute_total(self):
-        self.ensure_one()
         for x in self:
            x.computed_total =  x.computed_total_income - x.computed_total_expense
 
