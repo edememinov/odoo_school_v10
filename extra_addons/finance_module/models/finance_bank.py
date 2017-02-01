@@ -19,33 +19,37 @@ class FinanceBank(models.Model):
 
 
 
-    @api.multi
+    @api.one
     @api.depends('expense_id.expenseline.product_id')
     def products_in_expense(self):
+        self.ensure_one()
         for banks in self:
             for expenses in banks.expense_id:
                 for expenselines in expenses.expenseline:
                     for products in expenselines.product_id:
-                        self.products += products
+                        banks.products += products
 
-    @api.multi
+    @api.one
     @api.depends('expense_id.total_price')
     def compute_total_expense(self):
+        self.ensure_one()
         for x in self:
             for expense in x.expense_id:
-                self.computed_total_expense += expense.total_price
+                x.computed_total_expense += expense.total_price
 
 
-    @api.multi
+    @api.one
     @api.depends('income_id.amount_received')
     def compute_total_income(self):
+        self.ensure_one()
         for z in self:
             for income in z.income_id:
-                self.computed_total_income += income.amount_received
+                z.computed_total_income += income.amount_received
 
-    @api.multi
+    @api.one
     @api.depends('computed_total_expense', 'computed_total_income')
     def compute_total(self):
+        self.ensure_one()
         for x in self:
            x.computed_total =  x.computed_total_income - x.computed_total_expense
 
