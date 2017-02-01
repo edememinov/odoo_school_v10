@@ -59,19 +59,18 @@
             </field>
         </record>
 
-        <!--<record id="view_graph_bank" model="ir.ui.view">-->
-            <!--<field name="name">view_graph_bank</field>-->
-            <!--<field name="model">finance.expense</field>-->
-            <!--<field name="arch" type="xml">-->
-                <!--<graph type="pivot">-->
-                    <!--<field name="product_id"/>-->
-                    <!--<field name="computed_total" type="measure" />-->
-                    <!--<field name="computed_total_expense" type="measure" />-->
-                    <!--<field name="computed_total_income" type="measure" />-->
-                    <!--<field name="date" interval="month"/>-->
-                <!--</graph>-->
-            <!--</field>-->
-        <!--</record>-->
+        <record id="view_graph_expense" model="ir.ui.view">
+            <field name="name">view_graph_expense</field>
+            <field name="model">finance.expense.line</field>
+            <field name="arch" type="xml">
+                <graph type="pivot">
+                    <field name="product_id"/>
+                    <field name="price_per_product" type="measure" />
+                    <field name="product_price" type="measure" />
+                    <field name="amount" type="measure" />
+                </graph>
+            </field>
+        </record>
 
 
         <record id="view_tree_banking" model="ir.ui.view">
@@ -100,7 +99,17 @@
             <field name="view_id" ref="view_graph_bank"/>
         </record>
 
+        <record model="ir.actions.act_window" id="action_finance_expense_dashboard">
+            <field name="name">Expense Graph</field>
+            <field name="res_model">finance.expense.line</field>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_graph_expense"/>
+        </record>
 
+        <menuitem id="menu_finance_expense_dashboard"
+            name="Expense Dashboard"
+            sequence="20"
+            action="action_finance_expense_dashboard" />
 
         <menuitem id="menu_finance_bank"
             name="Bank"
