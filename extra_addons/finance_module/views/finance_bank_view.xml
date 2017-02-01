@@ -32,9 +32,9 @@
                         <field name="computed_total"/>
                         <field name="date"/>
 
-                        <field name="products">
+                        <field name="product_name">
                             <tree>
-                                <field name="product_name"/>
+                                <field name="name"/>
                                 <field name="price"/>
                                 <field name="store"/>
                             </tree>

@@ -26,13 +26,13 @@ class FinanceExpenseLine(models.Model):
     _description = "Expenses Line"
 
     name = fields.Char("Name of product", related='product.product_name', readonly=True)
-    product = fields.Many2one('finance.product', 'Product')
+    product_name = fields.Many2one('finance.product', 'Product')
     order_id = fields.Many2one('finance.expense', readonly=True)
     price_per_product = fields.Float("Price for product", related='product.price', readonly=True)
     product_price = fields.Float(compute='_compute_total_product_price', readonly=True)
     amount = fields.Integer('Amount')
 
-    @api.onchange('product')
+    @api.onchange('product_name')
     @api.multi
     @api.depends('amount', 'price_per_product')
     def _compute_total_product_price(self):
