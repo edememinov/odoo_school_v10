@@ -13,7 +13,7 @@
                         </group>
                         <group name="right">
                             <field name="product_price"/>
-                            <field name="product_name"/>
+                            <field name="name"/>
                             <field name="amount"/>
                         </group>
                     </group>
