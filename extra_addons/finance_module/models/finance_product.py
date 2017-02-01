@@ -10,8 +10,8 @@ class FinanceProduct(models.Model):
     price = fields.Float("Product Price")
     store = fields.Many2one('finance.shop', "Store")
     is_non_food = fields.Boolean('Product is non food')
-    type_food = fields.Many2many('finanace.type.food')
-    type_non_food = fields.Many2many('finanace.type.non.food')
+    type_food = fields.Many2one('finanace.type.food')
+    type_non_food = fields.Many2one('finanace.type.non.food')
 
 class TypeFoodProduct(models.Model):
     _name = 'finanace.type.food'
