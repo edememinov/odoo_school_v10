@@ -32,9 +32,9 @@ class FinanceExpenseLine(models.Model):
     product_price = fields.Float(compute='_compute_total_product_price', readonly=True)
     amount = fields.Integer('Amount')
 
-    @api.one
+    @api.onchange('product')
+    @api.multi
     @api.depends('amount', 'price_per_product')
     def _compute_total_product_price(self):
-        self.ensure_one()
         for x in self:
             x.product_price = x.amount * x.price_per_product
