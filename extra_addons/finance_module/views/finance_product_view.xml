@@ -54,13 +54,47 @@
             </field>
         </record>
 
+
+         <menuitem id="menu_finance_types"
+            name="Type Food"
+            sequence="20"
+            parent="menu_finance_product"
+        />
+
+        <act_window id="action_finance_type_food"
+            name="Type Food"
+            res_model="finance.type.food"
+            view_mode="tree,form"
+        />
+
+        <menuitem id="menu_finance_type_food"
+            name="Type Food"
+            sequence="20"
+            action="action_finance_type_food"
+            parent="menu_finance_types"
+        />
+
+
+        <act_window id="action_finance_type_non_food"
+            name="Type Non Food"
+            res_model="finance.type.non.food"
+            view_mode="tree,form"
+        />
+
+        <menuitem id="menu_finance_type_non_food"
+            name="Product"
+            sequence="20"
+            action="action_finance_type_non_food"
+            parent="menu_finance_types"
+        />
+
+
+
         <act_window id="action_finance_product"
             name="Product"
             res_model="finance.product"
             view_mode="tree,form"
         />
-
-
 
         <menuitem id="menu_finance_product"
             name="Product"
