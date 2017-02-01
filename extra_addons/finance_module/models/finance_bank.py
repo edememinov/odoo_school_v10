@@ -16,13 +16,13 @@ class FinanceBank(models.Model):
     products = fields.Many2many('finance.product', compute='products_in_expense', readonly=True, store=True)
 
     @api.one
-    @api.depends('expense_id.expenseline.product')
+    @api.depends('expense_id.expenseline.product_name')
     def products_in_expense(self):
         self.ensure_one()
         for banks in self:
             for expenses in banks.expense_id:
                 for expenselines in expenses.expenseline:
-                    for products in expenselines.product:
+                    for products in expenselines.product_name:
                         self.products += products
 
     @api.one
