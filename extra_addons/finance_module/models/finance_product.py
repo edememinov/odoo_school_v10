@@ -10,8 +10,19 @@ class FinanceProduct(models.Model):
     price = fields.Float("Product Price")
     store = fields.Many2one('finance.shop', "Store")
     is_non_food = fields.Boolean('Product is non food')
-    type_food = fields.Selection([('vegetables', 'Vegetables'), ('fruits', 'Fruits'), ('drinks','Drinks'), ('snacks','Snacks'), ('meat','Meat'), ('alcohol','Alcohol'), ('candy','Candy')])
-    type_non_food = fields.Selection([('hygene', 'Hygene'), ('phone', 'Phone Bill'), ('rent','Rent'), ('water','Water Bill'), ('gas','Gas Bill'), ('internet','Internet Bill'), ('electricity','Electricity Bill'), ('househole','Household objects'), ('clothes','Clothes'), ('furniture','Furniture'), ('electronics','Electronics'), ('games','Games')])
+    type_food = fields.Many2many('finanace.type.food')
+    type_non_food = fields.Many2many('finanace.type.non.food')
+
+class TypeFoodProduct(models.Model):
+    _name = 'finanace.type.food'
+    _description = "Food types"
+
+    type = fields.Char('Food type')
 
 
+class TypeNonFoodProduct(models.Model):
+    _name = 'finanace.type.non.food'
+    _description = "Non food types"
+
+    type = fields.Char('Non food type')
 
