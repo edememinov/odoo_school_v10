@@ -9,11 +9,11 @@
                 <form string="Expenseline" >
                     <group name="top">
                         <group name="left">
-                            <field name="product_name"/>
+                            <field name="product"/>
                         </group>
                         <group name="right">
                             <field name="product_price"/>
-                            <field name="product"/>
+                            <field name="product_name"/>
                             <field name="amount"/>
                         </group>
                     </group>
