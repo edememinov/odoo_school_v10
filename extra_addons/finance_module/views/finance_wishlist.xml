@@ -48,7 +48,6 @@
                             <field name="total_price"/>
                             <field name="share_with_everyone"/>
                             <field name="share_with_user"/>
-                            <field name="user_id"/>
                         </group>
                     </group>
                 </form>
