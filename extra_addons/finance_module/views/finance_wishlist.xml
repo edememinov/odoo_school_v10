@@ -46,7 +46,7 @@
                         <group name="right">
                             <field name="wishlistline"/>
                             <field name="total_price"/>
-                            <field name="private_list" attrs="{'invisible':[('create_uid','=','user.id')]}"/>
+                            <field name="private_list" attrs="{'invisible':[('create_uid','=','user_uid')]}"/>
                         </group>
                     </group>
                 </form>
