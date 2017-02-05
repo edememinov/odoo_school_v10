@@ -12,15 +12,23 @@
         <record id="finance_wishlist_user_rule" model="ir.rule">
             <field name="name">Finance Wishlist User Rule</field>
             <field name="model_id" ref="model_finance_wishlist"/>
-            <field name="domain_force">['|',('create_uid','=',user.id),('share_with_everyone','=',True )]
+            <field name="domain_force">['|',('create_uid','=',user.id),('private_list','=',True )]
             </field>
             <field name="groups" eval="[(4,ref('base.group_user'))]"/>
         </record>
 
-        <record id="finance_wishlist_user_rule" model="ir.rule">
+        <record id="finance_expense_user_rule" model="ir.rule">
             <field name="name">Finance Expense User Rule</field>
             <field name="model_id" ref="model_finance_expense"/>
-            <field name="domain_force">['|',('create_uid','=',user.id),('share_with_everyone','=',True )]
+            <field name="domain_force">['|',('create_uid','=',user.id),('private_list','=',True )]
+            </field>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        </record>
+
+        <record id="finance_income_user_rule" model="ir.rule">
+            <field name="name">Finance Income User Rule</field>
+            <field name="model_id" ref="model_finance_income"/>
+            <field name="domain_force">['|',('create_uid','=',user.id),('private_list','=',True )]
             </field>
             <field name="groups" eval="[(4,ref('base.group_user'))]"/>
         </record>

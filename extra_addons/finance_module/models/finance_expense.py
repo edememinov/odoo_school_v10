@@ -10,6 +10,7 @@ class FinanceExpense(models.Model):
     date = fields.Date("Date")
     total_price = fields.Float(compute='_compute_total_price')
     expenseline = fields.One2many('finance.expense.line', 'order_id', "Products", store=True)
+    private_list = fields.Boolean('Private')
 
     @api.one
     @api.depends('expenseline.product_price')

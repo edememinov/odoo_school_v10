@@ -10,5 +10,6 @@ class FinanceIncome(models.Model):
     date = fields.Date("Date")
     amount_received = fields.Float("Amount received")
     received_from = fields.Char("Received from")
+    private = fields.Boolean('Private')
 
 
