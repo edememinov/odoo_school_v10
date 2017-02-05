@@ -12,7 +12,7 @@
         <record id="finance_wishlist_user_rule" model="ir.rule">
             <field name="name">Finance Wishlist User Rule</field>
             <field name="model_id" ref="model_finance_wishlist"/>
-            <field name="domain_force">['|',('create_uid','=',user.id),('private_list','=',False ),(user.id,'not in',dont_share_with_users.id)]
+            <field name="domain_force">['|',('create_uid','=',user.id),('private_list','=',False ),(user.id,'not in','dont_share_with_users.id')]
             </field>
             <field name="groups" eval="[(4,ref('base.group_user'))]"/>
         </record>
