@@ -11,7 +11,7 @@ class FinanceWishlist(models.Model):
     wishlistline = fields.One2many('finance.wishlist.line', 'order_id', "Products", store=True)
     share_with_everyone = fields.Boolean('Share this wishlist')
     share_with_user = fields.Many2many('res.users')
-    user_id = fields.Integer(compute='user_id_compute', readonly=True)
+    user_id = fields.Many2many(compute='user_id_compute', readonly=True)
 
 
     @api.one
@@ -20,7 +20,7 @@ class FinanceWishlist(models.Model):
         self.ensure_one()
         for users in self:
             for user_ids in users.share_with_user:
-                user_ids.id += users.user_id
+                user_ids.partner_id += users.user_id
 
     @api.one
     @api.depends('wishlistline.product_price')
