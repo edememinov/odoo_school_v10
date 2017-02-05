@@ -10,6 +10,7 @@ class FinanceWishlist(models.Model):
     total_price = fields.Float(compute='_compute_total_price')
     wishlistline = fields.One2many('finance.wishlist.line', 'order_id', "Products", store=True)
     private_list = fields.Boolean('Private')
+    dont_share_with_users = fields.Many2one('res.users', string='Dont share with other users')
 
 
     @api.one

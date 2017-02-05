@@ -47,6 +47,7 @@
                             <field name="wishlistline"/>
                             <field name="total_price"/>
                             <field name="private_list"/>
+                            <field name="dont_share_with_users"/>
                         </group>
                     </group>
                 </form>
