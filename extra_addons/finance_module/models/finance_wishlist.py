@@ -24,7 +24,7 @@ class FinanceWishlist(models.Model):
 
     @api.model
     def _get_active_id(self):
-        self.user_uid =  self._context.get('active_id')
+        self.user_uid =  self.pool.get('res.users')
 
 
 
