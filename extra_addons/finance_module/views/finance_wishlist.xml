@@ -36,7 +36,7 @@
 
         <record id="finance_wishlist_form" model="ir.ui.view">
             <field name="name">finance.wishlist.form</field>
-            <field name="model">model_finance_wishlist</field>
+            <field name="model">finance.wishlist</field>
             <field name="arch" type="xml">
                 <form string="Wishlistline" >
                     <group name="top">
