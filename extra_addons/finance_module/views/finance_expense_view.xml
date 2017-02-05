@@ -45,6 +45,7 @@
                         <group name="right">
                             <field name="expenseline"/>
                             <field name="total_price"/>
+                            <field name="share_with_everyone"/>
                         </group>
                     </group>
                 </form>
