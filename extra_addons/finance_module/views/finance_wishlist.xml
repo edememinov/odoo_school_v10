@@ -20,7 +20,7 @@
             </field>
         </record>
 
-        <record id="finance_expenseline_tree" model="ir.ui.view">
+        <record id="finance_wishlistline_tree" model="ir.ui.view">
             <field name="name">finance.wishlist.tree</field>
             <field name="model">finance.wishlist.line</field>
             <field name="arch" type="xml">
@@ -34,7 +34,7 @@
             </field>
         </record>
 
-        <record id="finance_expense_form" model="ir.ui.view">
+        <record id="finance_wishlist_form" model="ir.ui.view">
             <field name="name">finance.wishlist.form</field>
             <field name="model">finance.wishlist</field>
             <field name="arch" type="xml">
@@ -47,13 +47,14 @@
                         <group name="right">
                             <field name="expenseline"/>
                             <field name="total_price"/>
+                            <field name="share_with_everyone"/>
                         </group>
                     </group>
                 </form>
             </field>
         </record>
 
-        <record id="view_tree_expense" model="ir.ui.view">
+        <record id="view_tree_wishlist" model="ir.ui.view">
             <field name="name">Wishlist Tree view</field>
             <field name="model">finance.wishlist</field>
             <field name="arch" type="xml">
