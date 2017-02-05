@@ -22,9 +22,9 @@ class FinanceWishlist(models.Model):
                 x.total_price += line.product_price
 
     @api.multi
-    def user_uid_search(self):
+    def user_uid_search(self, cr, uid, context, ids):
         users = self.pool.get('res.users')
-        current_user = users.browse(cr, uid, uid, context=context)
+        current_user = users.browse(cr, uid, ids, context=context)
         for uid in current_user:
             for x in self:
                 x.user_uid = uid.id
