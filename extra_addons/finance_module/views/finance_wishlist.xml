@@ -69,7 +69,6 @@
             name="Wishlist"
             res_model="finance.wishlist"
             view_mode="tree,form"
-            context="{'group_by':'date'}"
         />
 
 
