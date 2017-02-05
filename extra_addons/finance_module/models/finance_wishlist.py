@@ -11,6 +11,15 @@ class FinanceWishlist(models.Model):
     wishlistline = fields.One2many('finance.wishlist.line', 'order_id', "Products", store=True)
     share_with_everyone = fields.Boolean('Share this wishlist')
     share_with_user = fields.Many2many('res.users')
+    user_id = fields.Integer(compute='user_id_compute', readonly=True)
+
+
+    @api.one
+    @api.depends('share_with_user')
+    def user_id_compute(self):
+        self.ensure_one()
+        for users in self:
+            users.user_id += users.share_with_user.id
 
     @api.one
     @api.depends('wishlistline.product_price')
