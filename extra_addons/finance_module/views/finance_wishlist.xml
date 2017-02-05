@@ -46,8 +46,7 @@
                         <group name="right">
                             <field name="wishlistline"/>
                             <field name="total_price"/>
-                            <field name="private_list"/>
-                            <field name="dont_share_with_users"/>
+                            <field name="private_list" attrs="{'invisible':[('create_uid','=', user.id )]}"/>
                         </group>
                     </group>
                 </form>
