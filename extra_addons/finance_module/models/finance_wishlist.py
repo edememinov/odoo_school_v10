@@ -10,7 +10,7 @@ class FinanceWishlist(models.Model):
     total_price = fields.Float(compute='_compute_total_price')
     wishlistline = fields.One2many('finance.wishlist.line', 'order_id', "Products", store=True)
     private_list = fields.Boolean('Private')
-    user_uid = fields.Integer(compute='_get_active_id', readonly=True)
+    user_id = fields.Many2one('res.users', default=lambda self: self.env.user.id)
 
 
 
@@ -21,12 +21,6 @@ class FinanceWishlist(models.Model):
         for x in self:
             for line in x.wishlistline:
                 x.total_price += line.product_price
-
-    @api.model
-    def _get_active_id(self):
-        return self.pool.get('res.users').browse(self.cr, self.uid, self.uid).id
-
-
 
 
 class FinanceWishListLine(models.Model):
