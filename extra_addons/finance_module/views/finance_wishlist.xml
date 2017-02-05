@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="finance_expenseline_form" model="ir.ui.view">
+            <field name="name">finance.wishlist.form</field>
+            <field name="model">finance.wishlist.line</field>
+            <field name="arch" type="xml">
+                <form string="Expenseline" >
+                    <group name="top">
+                        <group name="left">
+                            <field name="product_id"/>
+                        </group>
+                        <group name="right">
+                            <field name="amount"/>
+                            <field name="bought"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="finance_expenseline_tree" model="ir.ui.view">
+            <field name="name">finance.wishlist.tree</field>
+            <field name="model">finance.wishlist.line</field>
+            <field name="arch" type="xml">
+               <tree>
+                   <field name="product_id"/>
+                   <field name="amount"/>
+                   <field name="product_price"/>
+                   <field name="price_per_product"/>
+                   <field name="bought"/>
+               </tree>
+            </field>
+        </record>
+
+        <record id="finance_expense_form" model="ir.ui.view">
+            <field name="name">finance.wishlist.form</field>
+            <field name="model">finance.wishlist</field>
+            <field name="arch" type="xml">
+                <form string="Expense" >
+                    <group name="top">
+                        <group name="left">
+                            <field name="name"/>
+                            <field name="date"/>
+                        </group>
+                        <group name="right">
+                            <field name="expenseline"/>
+                            <field name="total_price"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tree_expense" model="ir.ui.view">
+            <field name="name">Wishlist Tree view</field>
+            <field name="model">finance.wishlist</field>
+            <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="total_price"/>
+            </tree>
+            </field>
+        </record>
+
+        <act_window id="action_finance_wishlist"
+            name="Wishlist"
+            res_model="finance.wishlist"
+            view_mode="tree,form"
+            context="{'group_by':'date'}"
+        />
+
+
+
+        <menuitem id="menu_finance_wishlist"
+            name="Wishlist"
+            sequence="20"
+            action="action_finance_wishlist" />
+
+    </data>
+</openerp>
