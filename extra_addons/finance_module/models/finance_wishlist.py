@@ -6,28 +6,28 @@ class FinanceWishlist(models.Model):
     _name = "finance.wishlist"
     _description = "Expenses"
 
-    name = fields.Char('Name of the expense')
-    date = fields.Date("Date")
+    name = fields.Char('Name of the wishlist')
     total_price = fields.Float(compute='_compute_total_price')
-    expenseline = fields.One2many('finance.expense.line', 'order_id', "Products", store=True)
+    wishlistline = fields.One2many('finance.wishlist.line', 'order_id', "Products", store=True)
     share_with_everyone = fields.Boolean('Share this wishlist')
+    share_with_certain = fields.Many2many('res.user', 'Share with certain people')
 
     @api.one
-    @api.depends('expenseline.product_price')
+    @api.depends('wishlistline.product_price')
     def _compute_total_price(self):
         self.ensure_one()
         for x in self:
-            for line in x.expenseline:
+            for line in x.wishlistline:
                 x.total_price += line.product_price
 
 
 
 class FinanceWishListLine(models.Model):
     _name = "finance.wishlist.line"
-    _description = "Expenses Line"
+    _description = "Wishlist Line"
 
     product_id = fields.Many2one('finance.product', store=True)
-    order_id = fields.Many2one('finance.expense')
+    order_id = fields.Many2one('finance.wishlist')
     price_per_product = fields.Float("Price for product", related='product_id.price', readonly=True, store=True)
     product_price = fields.Float(compute='_compute_total_product_price', readonly=True, store=True)
     amount = fields.Integer('Amount', default=1)
