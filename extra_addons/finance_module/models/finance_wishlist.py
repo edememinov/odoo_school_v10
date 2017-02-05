@@ -20,7 +20,7 @@ class FinanceWishlist(models.Model):
         self.ensure_one()
         for users in self:
             for user_ids in users.share_with_user:
-                user_ids.share_with_user.id += user_ids.user_id
+                user_ids.id += users.user_id
 
     @api.one
     @api.depends('wishlistline.product_price')
