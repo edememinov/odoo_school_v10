@@ -42,6 +42,7 @@
                     <group name="top">
                         <group name="left">
                             <field name="name"/>
+                            <field name="private_list" attrs="{'invisible': [('inv','=',True)]}"/>
                         </group>
                         <group name="right">
                             <field name="wishlistline"/>
@@ -51,7 +52,6 @@
                             <field name="user" invisible="1"/>
                             <field name="creator_id" invisible="1"/>
                             <field name="inv" invisible="1"/>
-                            <field name="private_list" attrs="{'invisible': [('inv','=',True)]}"/>
                         </group>
                     </group>
                 </form>
