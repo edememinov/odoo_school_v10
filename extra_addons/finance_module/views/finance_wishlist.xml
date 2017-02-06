@@ -50,7 +50,7 @@
                             <field name="user_id"/>
                             <field name="user"/>
                             <field name="creator_id"/>
-                            <field name="private_list" attrs="{'invisible':[('creator_id','=','user_id')]}"/>
+                            <field name="private_list" attrs="{'invisible':[('inv','=',True)]}"/>
                         </group>
                     </group>
                 </form>
