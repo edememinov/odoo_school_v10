@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data noupdate="1">
+    <data noupdate="0">
         <record id="finance_bank_user_rule" model="ir.rule">
             <field name="name">Finance Bank User Rule</field>
             <field name="model_id" ref="model_finance_bank"/>

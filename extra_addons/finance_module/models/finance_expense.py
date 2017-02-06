@@ -55,12 +55,14 @@ class FinanceExpenseLine(models.Model):
 
     product_id = fields.Many2one('finance.product', store=True)
     order_id = fields.Many2one('finance.expense')
-    price_per_product = fields.Float("Price for product", related='product_id.price', readonly=True, store=True)
+    price_per_product = fields.Float("Total price for products", related='product_id.price', readonly=True, store=True)
     product_price = fields.Float(compute='_compute_total_product_price', readonly=True, store=True)
     amount = fields.Integer('Amount', default=1)
     product_is_food = fields.Boolean(related='product_id.is_non_food', store=True)
     product_food_type = fields.Many2one(related='product_id.type_food', store=True)
     product_food_non_food = fields.Many2one(related='product_id.type_non_food', store=True)
+    discount = fields.Integer('Discount', compute='compute_discount_price')
+    is_discount = fields.Boolean('Theres a discount for this product')
 
 
 
@@ -68,5 +70,12 @@ class FinanceExpenseLine(models.Model):
     @api.depends('amount', 'price_per_product')
     def _compute_total_product_price(self):
         self.ensure_one()
-        for x in self:
-            x.product_price = x.amount * x.price_per_product
+        if self.is_discount == False:
+            for x in self:
+                x.product_price = x.amount * x.price_per_product
+        else:
+            discount = 100 - self.discount
+            discount_total = discount/100
+            for x in self:
+                x.product_price = x.amount * (x.price_per_product * discount_total)
+
