@@ -14,10 +14,9 @@ class FinanceWishlist(models.Model):
     private_list = fields.Boolean('Private')
     user = fields.Many2one('res.users', string='User ID', compute='compute_current_user')
     user_id = fields.Integer(compute='compute_user_id')
-    creator_id = fields.Integer(compute='compute_creator_id',string='TEST')
+    creator_id = fields.Integer(compute='compute_creator_id', string='TEST')
     inv = fields.Boolean('invisible', compute='compute_invisible')
 
-    @api.onchange('user')
     @api.one
     def compute_invisible(self):
         if self.wishlistline != False:

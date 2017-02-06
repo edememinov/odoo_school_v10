@@ -16,7 +16,6 @@ class FinanceIncome(models.Model):
     creator_id = fields.Integer(compute='compute_creator_id',string='TEST')
     inv = fields.Boolean('invisible', compute='compute_invisible')
 
-    @api.onchange('user')
     @api.one
     def compute_invisible(self):
         if self.amount_received != False:
