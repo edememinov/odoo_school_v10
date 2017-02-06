@@ -15,7 +15,7 @@ class FinanceWishlist(models.Model):
     user = fields.Many2one('res.users', string='User ID', compute='compute_current_user')
 
     user_id = fields.Integer(compute='compute_user_id')
-    creator_id = fields.Integer(compute='compute_creator_id')
+    creator_id = fields.Integer(compute='compute_creator_id',string='TEST')
 
 
     @api.one
