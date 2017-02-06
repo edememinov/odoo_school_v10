@@ -63,6 +63,7 @@ class FinanceExpenseLine(models.Model):
     product_food_non_food = fields.Many2one(related='product_id.type_non_food', store=True)
     discount = fields.Integer('Discount')
     is_discount = fields.Boolean('Theres a discount for this product')
+    discount_total = fields.Float('Total discount', readonly=True)
 
 
 
@@ -76,10 +77,10 @@ class FinanceExpenseLine(models.Model):
         else:
             discount = 100 - self.discount
             print(discount)
-            discount_total = discount/100
-            print(discount_total)
+            self.discount_total = discount/100
+            print(self.discount_total)
             for x in self:
-                total_discount_price = x.price_per_product * discount_total
+                total_discount_price = x.price_per_product * self.discount_total
                 x.product_price = x.amount * total_discount_price
                 print(total_discount_price)
 
