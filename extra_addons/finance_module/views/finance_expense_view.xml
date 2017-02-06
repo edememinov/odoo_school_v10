@@ -15,6 +15,12 @@
                             <field name="amount"/>
                         </group>
                     </group>
+                    <group name="bottom">
+                        <group name="left">
+                            <field name="is_discount"/>
+                            <field name="discount" attrs="{'invisible': [('is_discount','=',False)]}"/>
+                        </group>
+                    </group>
                 </form>
             </field>
         </record>
@@ -44,17 +50,7 @@
                             <field name="date"/>
                         </group>
                         <group name="right">
-                            <field name="expenseline">
-                                    <tree>
-                                        <field name="product_id"/>
-                                        <field name="order_id" invisible="1"/>
-                                        <field name="price_per_product"/>
-                                        <field name="product_price"/>
-                                        <field name="amount"/>
-                                        <field name="is_discount"/>
-                                        <field name="discount" attrs="{'invisible': [('is_discount','=',False)]}"/>
-                                    </tree>
-                            </field>
+                            <field name="expenseline"/>
 
                             <field name="total_price"/>
                             <field name="create_uid" invisible="1"/>
