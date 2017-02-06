@@ -16,7 +16,7 @@ class FinanceWishlist(models.Model):
 
     @api.one
     def get_create_uid(self):
-        self.get_create_uid = self.create_uid.id
+        self.get_create_uid = self.create_uid
 
     @api.one
     @api.depends('wishlistline.product_price')
