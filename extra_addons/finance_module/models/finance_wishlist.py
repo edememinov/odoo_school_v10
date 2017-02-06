@@ -20,6 +20,7 @@ class FinanceWishlist(models.Model):
     @api.one
     def compute_invisible(self):
         if self.user_id == self.creator_id:
+            print(self.user_id == self.creator_id)
             return False
         else:
             return True
@@ -27,14 +28,17 @@ class FinanceWishlist(models.Model):
     @api.one
     def compute_current_user(self):
         self.user = self.env.user
+        print(self.user)
 
     @api.one
     def compute_creator_id(self):
         self.creator_id = self.create_uid
+        print(self.creator_id)
 
     @api.one
     def compute_user_id(self):
         self.user_id = self.user.id
+        print(self.user_id)
 
 
 
