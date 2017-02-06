@@ -21,9 +21,9 @@ class FinanceWishlist(models.Model):
     def compute_invisible(self):
         if self.user_id == self.creator_id:
             print(self.user_id == self.creator_id)
-            return False
+            self.inv = False
         else:
-            return True
+            self.inv = True
 
     @api.one
     def compute_current_user(self):
