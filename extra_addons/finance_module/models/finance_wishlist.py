@@ -11,20 +11,15 @@ class FinanceWishlist(models.Model):
     name = fields.Char('Name of the wishlist')
     total_price = fields.Float(compute='_compute_total_price')
     wishlistline = fields.One2many('finance.wishlist.line', 'order_id', "Products", store=True)
-    private_list = fields.Boolean('Private')
-    user = fields.Many2one('res.users', string='User ID', compute='compute_current_user')
-    user_id = fields.Integer(compute='compute_user_id')
-    creator_id = fields.Integer(compute='compute_creator_id',string='TEST')
-    inv = fields.Boolean('invisible', compute='compute_invisible')
-
     @api.onchange('user')
     @api.one
     def compute_invisible(self):
-        if self.user_id == self.creator_id:
-            print(self.user_id == self.creator_id)
-            self.inv = False
-        else:
-            self.inv = True
+        if self.wishlistline != False:
+            if self.user_id == self.creator_id:
+                print(self.user_id == self.creator_id)
+                self.inv = False
+            else:
+                self.inv = True
 
     @api.one
     def compute_current_user(self):
@@ -33,8 +28,9 @@ class FinanceWishlist(models.Model):
 
     @api.one
     def compute_creator_id(self):
-        self.creator_id = self.create_uid
-        print(self.creator_id)
+        if self.wishlistline != False:
+            self.creator_id = self.create_uid
+            print(self.creator_id)
 
     @api.one
     def compute_user_id(self):

@@ -19,11 +19,12 @@ class FinanceExpense(models.Model):
     @api.onchange('user')
     @api.one
     def compute_invisible(self):
-        if self.user_id == self.creator_id:
-            print(self.user_id == self.creator_id)
-            self.inv = False
-        else:
-            self.inv = True
+        if self.expenseline != False:
+            if self.user_id == self.creator_id:
+                print(self.user_id == self.creator_id)
+                self.inv = False
+            else:
+                self.inv = True
 
     @api.one
     def compute_current_user(self):
@@ -32,8 +33,9 @@ class FinanceExpense(models.Model):
 
     @api.one
     def compute_creator_id(self):
-        self.creator_id = self.create_uid
-        print(self.creator_id)
+        if self.expenseline != False:
+            self.creator_id = self.create_uid
+            print(self.creator_id)
 
     @api.one
     def compute_user_id(self):
