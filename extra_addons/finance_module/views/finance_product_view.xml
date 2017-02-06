@@ -61,11 +61,11 @@
         </record>
 
 
-         <!--<menuitem id="menu_finance_types"-->
-            <!--name="Type Food"-->
-            <!--sequence="20"-->
-            <!--parent="menu_finance_product"-->
-        <!--/>-->
+         <menuitem id="menu_finance_types"
+            name="Type Food"
+            sequence="20"
+            parent="menu_finance_product"
+        />
 
         <act_window id="action_finance_type_food"
             name="Type Food"
@@ -76,8 +76,8 @@
         <menuitem id="menu_finance_type_food"
             name="Type Food"
             sequence="20"
-            action="action_finance_type_food" />
-            <!--parent="menu_finance_types"-->
+            action="action_finance_type_food"
+            parent="menu_finance_types"
         />
 
 
@@ -90,8 +90,8 @@
         <menuitem id="menu_finance_type_non_food"
             name="Type Non Food"
             sequence="20"
-            action="action_finance_type_non_food" />
-            <!--parent="menu_finance_types"-->
+            action="action_finance_type_non_food"
+            parent="menu_finance_types"
         />
 
 
