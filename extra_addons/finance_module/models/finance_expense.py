@@ -75,9 +75,9 @@ class FinanceExpenseLine(models.Model):
             for x in self:
                 x.product_price = x.amount * x.price_per_product
         else:
-            discount = 100 - self.discount
+            discount = 100.0 - self.discount
             print(discount)
-            self.discount_total = discount/100
+            self.discount_total = discount/100.0
             print(self.discount_total)
             for x in self:
                 total_discount_price = x.price_per_product * self.discount_total
