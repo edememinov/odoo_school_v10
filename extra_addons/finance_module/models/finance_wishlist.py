@@ -25,9 +25,7 @@ class FinanceWishlist(models.Model):
 
     @api.one
     def compute_user_id(self):
-        for user in self:
-            for id in user:
-                user.user_id = id.id[0]
+        self.user_id = self.user.id
 
 
 
