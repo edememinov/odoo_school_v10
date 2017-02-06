@@ -61,7 +61,7 @@ class FinanceExpenseLine(models.Model):
     product_is_food = fields.Boolean(related='product_id.is_non_food', store=True)
     product_food_type = fields.Many2one(related='product_id.type_food', store=True)
     product_food_non_food = fields.Many2one(related='product_id.type_non_food', store=True)
-    discount = fields.Integer('Discount', compute='compute_discount_price')
+    discount = fields.Integer('Discount')
     is_discount = fields.Boolean('Theres a discount for this product')
 
 
