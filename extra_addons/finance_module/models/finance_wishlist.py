@@ -27,7 +27,7 @@ class FinanceWishlist(models.Model):
     def compute_user_id(self):
         for user in self:
             for id in user:
-                user.user_id = id.id
+                user.user_id = id.id[0]
 
 
 
