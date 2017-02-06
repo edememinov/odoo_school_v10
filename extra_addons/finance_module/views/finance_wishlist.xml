@@ -48,7 +48,7 @@
                             <field name="total_price"/>
                             <field name="user_uid"/>
                             <field name="create_uid"/>
-                            <field name="private_list" attrs="{'invisible':[('create_uid','!=','user_uid')]}"/>
+                            <field name="private_list" attrs="{'invisible':[('user_uid','!=',create_uid)]}"/>
                         </group>
                     </group>
                 </form>

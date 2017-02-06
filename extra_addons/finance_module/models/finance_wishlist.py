@@ -11,12 +11,6 @@ class FinanceWishlist(models.Model):
     wishlistline = fields.One2many('finance.wishlist.line', 'order_id', "Products", store=True)
     private_list = fields.Boolean('Private')
     user_uid = fields.Many2one('res.users', default=lambda self: self.env.user.id)
-    create_uid = fields.Many2one('res.users', compute='get_create_uid')
-
-
-    @api.one
-    def get_create_uid(self):
-        self.get_create_uid = self.create_uid
 
     @api.one
     @api.depends('wishlistline.product_price')
