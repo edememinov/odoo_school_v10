@@ -5,6 +5,11 @@ from odoo import api, fields, models
 class FinanceWishlist(models.Model):
     _name = "finance.wishlist"
     _description = "Wishlist"
+    _defaults = {
+
+        'user': lambda self, cr, uid, ctx=None: uid
+
+    }
 
 
 
@@ -12,8 +17,7 @@ class FinanceWishlist(models.Model):
     total_price = fields.Float(compute='_compute_total_price')
     wishlistline = fields.One2many('finance.wishlist.line', 'order_id', "Products", store=True)
     private_list = fields.Boolean('Private')
-    user = fields.Many2one('res.users', string='User ID',
-                              default=lambda self: self.env.user)
+    user = fields.Many2one('res.users', string='User ID')
 
     user_id = fields.Integer(compute='compute_user_id')
     creator_id = fields.Integer(compute='compute_creator_id')
@@ -25,11 +29,7 @@ class FinanceWishlist(models.Model):
 
     @api.one
     def compute_user_id(self):
-        for user in self:
-            for id_user in user:
-                user.user_id = id_user.id
-                print(user.user_id)
-
+        self.user_id = self.user.id
 
 
 
