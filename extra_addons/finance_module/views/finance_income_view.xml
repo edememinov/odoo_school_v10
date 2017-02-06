@@ -10,15 +10,37 @@
                 <field name="date"/>
                 <field name="amount_received"/>
                 <field name="received_from"/>
-                <field name="private_list" attrs="{'invisible': [('inv','=',True)]}"/>
-                <field name="create_uid" invisible="1"/>
-                <field name="user_id" invisible="1"/>
-                <field name="user" invisible="1"/>
-                <field name="creator_id" invisible="1"/>
-                <field name="inv" invisible="1"/>
+
             </tree>
             </field>
         </record>
+
+        <record id="view_form_income" model="ir.ui.view">
+            <field name="name">Income Form view</field>
+            <field name="model">finance.income</field>
+            <field name="arch" type="xml">
+            <form>
+                <group name="top">
+                    <group name="left">
+                        <field name="date"/>
+                        <field name="amount_received"/>
+                        <field name="received_from"/>
+                    </group>
+                    <group name="right">
+                        <field name="private_list" attrs="{'invisible': [('inv','=',True)]}"/>
+                        <field name="create_uid" invisible="1"/>
+                        <field name="user_id" invisible="1"/>
+                        <field name="user" invisible="1"/>
+                        <field name="creator_id" invisible="1"/>
+                        <field name="inv" invisible="1"/>
+                    </group>
+                </group>
+
+            </form>
+            </field>
+        </record>
+
+
 
         <act_window id="action_finance_income"
             name="Income"
