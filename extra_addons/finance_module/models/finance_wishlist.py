@@ -5,19 +5,31 @@ from odoo import api, fields, models
 class FinanceWishlist(models.Model):
     _name = "finance.wishlist"
     _description = "Wishlist"
-    _defaults = {
 
-        'user_uid': lambda self, cr, uid, ctx=None: uid
-
-    }
 
 
     name = fields.Char('Name of the wishlist')
     total_price = fields.Float(compute='_compute_total_price')
     wishlistline = fields.One2many('finance.wishlist.line', 'order_id', "Products", store=True)
     private_list = fields.Boolean('Private')
-    user_uid = fields.Many2one('res.users')
-    inv = fields.Boolean('Invisible', compute='compute_invisible')
+    user = fields.Many2one('res.users', string='User ID',
+                              default=lambda self: self.env.user)
+
+    user_id = fields.Integer(compute='compute_user_id')
+    creator_id = fields.Integer(compute='compute_creator_id')
+
+
+    @api.one
+    def compute_creator_id(self):
+        self.creator_id = self.create_uid
+
+    @api.one
+    def compute_user_id(self):
+        for user in self:
+            for id in user:
+                user.user_id = id.id
+
+
 
 
 
