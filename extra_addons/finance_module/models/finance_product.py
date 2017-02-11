@@ -6,7 +6,8 @@ class FinanceProduct(models.Model):
     _name = "finance.product"
     _description = "Products"
 
-    name = fields.Char("Product name")
+    name = fields.Char("Product name", compute='compute_product_name', readonly=True)
+    product_name = fields.Char('Name of the product')
     price = fields.Float("Product Price")
     store = fields.Many2one('finance.shop', "Store")
     is_non_food = fields.Boolean('Product is non food')
@@ -18,6 +19,12 @@ class FinanceProduct(models.Model):
     creator_id = fields.Integer(compute='compute_creator_id',string='TEST')
     inv = fields.Boolean('invisible', compute='compute_invisible')
     barcode = fields.Char('Barcode')
+
+
+    @api.one
+    def compute_product_name(self):
+        for products in self:
+            products.name = products.product_name + "[" + products.barcode + "]" + "Shop: " + products.store
 
     @api.one
     def compute_invisible(self):

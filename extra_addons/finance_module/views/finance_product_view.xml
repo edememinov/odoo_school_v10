@@ -9,6 +9,7 @@
 
                     <group name="top">
                         <group name="left">
+                            <field name="product_name"/>
                             <field name="name"/>
                             <field name="barcode"/>
                             <field name="private_list" attrs="{'invisible': [('inv','=',True)]}"/>
@@ -38,7 +39,7 @@
             <field name="model">finance.product</field>
             <field name="arch" type="xml">
                  <search string="Products">
-                    <field name="name"/>
+                    <field name="product_name"/>
                     <field name="barcode"/>
                  </search>
             </field>
