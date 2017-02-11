@@ -17,7 +17,7 @@ class FinanceProduct(models.Model):
     user_id = fields.Integer(compute='compute_user_id')
     creator_id = fields.Integer(compute='compute_creator_id',string='TEST')
     inv = fields.Boolean('invisible', compute='compute_invisible')
-    barcode = fields.Integer('Barcode')
+    barcode = fields.Char('Barcode')
 
     @api.one
     def compute_invisible(self):
