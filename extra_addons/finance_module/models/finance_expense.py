@@ -11,6 +11,33 @@ class FinanceExpense(models.Model):
     total_price = fields.Float(compute='_compute_total_price')
     expenseline = fields.One2many('finance.expense.line', 'order_id', "Products", store=True)
     private_list = fields.Boolean('Private')
+    user = fields.Many2one('res.users', string='User ID', compute='compute_current_user')
+    user_id = fields.Integer(compute='compute_user_id')
+    creator_id = fields.Integer(compute='compute_creator_id',string='TEST')
+    inv = fields.Boolean('invisible', compute='compute_invisible')
+
+    @api.one
+    def compute_invisible(self):
+        if self.user_id == self.creator_id:
+            self.inv = False
+        else:
+            self.inv = True
+
+    @api.one
+    def compute_current_user(self):
+        self.user = self.env.user
+
+
+    @api.one
+    def compute_creator_id(self):
+        self.creator_id = self.create_uid
+
+    @api.one
+    def compute_user_id(self):
+        self.user_id = self.user.id
+
+
+
 
     @api.one
     @api.depends('expenseline.product_price')
@@ -29,11 +56,14 @@ class FinanceExpenseLine(models.Model):
     product_id = fields.Many2one('finance.product', store=True)
     order_id = fields.Many2one('finance.expense')
     price_per_product = fields.Float("Price for product", related='product_id.price', readonly=True, store=True)
-    product_price = fields.Float(compute='_compute_total_product_price', readonly=True, store=True)
+    product_price = fields.Float("Total product price", compute='_compute_total_product_price', readonly=True, store=True)
     amount = fields.Integer('Amount', default=1)
     product_is_food = fields.Boolean(related='product_id.is_non_food', store=True)
     product_food_type = fields.Many2one(related='product_id.type_food', store=True)
     product_food_non_food = fields.Many2one(related='product_id.type_non_food', store=True)
+    discount = fields.Integer('Discount')
+    is_discount = fields.Boolean('Theres a discount for this product')
+    discount_total = fields.Float('Total discount', readonly=True)
 
 
 
@@ -41,5 +71,16 @@ class FinanceExpenseLine(models.Model):
     @api.depends('amount', 'price_per_product')
     def _compute_total_product_price(self):
         self.ensure_one()
-        for x in self:
-            x.product_price = x.amount * x.price_per_product
+        if self.is_discount == False:
+            for x in self:
+                x.product_price = x.amount * x.price_per_product
+        else:
+            discount = 100.0 - self.discount
+            print(discount)
+            self.discount_total = discount/100.0
+            print(self.discount_total)
+            for x in self:
+                total_discount_price = x.price_per_product * self.discount_total
+                x.product_price = x.amount * total_discount_price
+                print(total_discount_price)
+
