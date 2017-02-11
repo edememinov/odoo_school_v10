@@ -23,8 +23,14 @@ class FinanceProduct(models.Model):
 
     @api.one
     def compute_product_name(self):
-        simpleText = str(str(self.product_name) +" [" + str(self.barcode) + "]" + "Shop:" + str(self.store.name))
-        self.name = str(simpleText)
+        if self.barcode == False:
+            simpleText = str(
+            str(self.product_name) +  "   Shop:" + str(self.store.name))
+            self.name = str(simpleText)
+
+        else:
+            simpleText = str(str(self.product_name) +"   [" + str(self.barcode) + "]" + "   Shop:" + str(self.store.name))
+            self.name = str(simpleText)
 
 
     @api.one
