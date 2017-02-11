@@ -5,11 +5,12 @@
             <field name="name">finance.product.form</field>
             <field name="model">finance.product</field>
             <field name="arch" type="xml">
-                <form string="Banking" >
+                <form string="Product" >
 
                     <group name="top">
                         <group name="left">
                             <field name="name"/>
+                            <field name="barcode"/>
                             <field name="private_list" attrs="{'invisible': [('inv','=',True)]}"/>
                             <field name="create_uid" invisible="1"/>
                             <field name="user_id" invisible="1"/>
