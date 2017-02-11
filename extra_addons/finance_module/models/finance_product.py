@@ -23,7 +23,9 @@ class FinanceProduct(models.Model):
 
     @api.one
     def compute_product_name(self):
-        self.name = str(self.product_name + self.barcode )
+        simpleText = str(str(self.product_name) + str(self.barcode))
+        self.name = str(simpleText)
+
 
     @api.one
     def compute_invisible(self):
