@@ -33,6 +33,17 @@
             </field>
         </record>
 
+             <record id="finance_product_search" model="ir.ui.view">
+            <field name="name">finance.product.search</field>
+            <field name="model">finance.product</field>
+            <field name="arch" type="xml">
+                 <search string="Products">
+                    <field name="name"/>
+                    <field name="barcode"/>
+                 </search>
+            </field>
+        </record>
+
            <record id="finance_type_food_form" model="ir.ui.view">
             <field name="name">finance.type.food.form</field>
             <field name="model">finanace.type.food</field>
