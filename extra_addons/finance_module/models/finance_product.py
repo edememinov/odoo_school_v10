@@ -23,7 +23,7 @@ class FinanceProduct(models.Model):
 
     @api.one
     def compute_product_name(self):
-        simpleText = str(str(self.product_name) +" [" + str(self.barcode) + "]")
+        simpleText = str(str(self.product_name) +" [" + str(self.barcode) + "]" + "Shop:" + str(self.store))
         self.name = str(simpleText)
 
 
