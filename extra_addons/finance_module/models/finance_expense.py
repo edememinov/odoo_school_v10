@@ -27,6 +27,13 @@ class FinanceExpense(models.Model):
     between_price = fields.Float(compute='compute_between_price')
 
     @api.one
+    @api.onchange('private_list')
+    def change_list(self):
+        if self.private_list == True:
+            self.share_with_person = False
+
+
+    @api.one
     def compute_total_price_product(self):
         if self.share_with_person == True:
             y = self.total_price
