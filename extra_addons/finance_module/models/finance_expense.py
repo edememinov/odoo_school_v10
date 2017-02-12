@@ -49,11 +49,13 @@ class FinanceExpense(models.Model):
     def compute_total_price_product(self):
         if self.calculate_per_product == True:
             if self.share_with_person == True:
+                self.total_price = self.amout_junkfood
                 self.total_price = self.price_per_person
             else:
                 self.total_price = self.amout_junkfood
         else:
             if self.share_with_person == True:
+                self.total_price = self.total_price_input
                 self.total_price = self.price_per_person
             else:
                 self.total_price = self.total_price_input
