@@ -5,17 +5,13 @@ from odoo import api, fields, models
 class FinanceExpense(models.Model):
     _name = "finance.expense"
     _description = "Expenses"
+    _inherit = 'finance_share'
 
     name = fields.Char('Name of the expense')
     date = fields.Date("Date", required=True)
     food_price = fields.Float(compute='_compute_food_price')
     expenseline = fields.One2many('finance.expense.line', 'order_id', "Specific Products", store=True)
     total_price = fields.Float(string="Total amount paid for products", compute='compute_total_price_product')
-    private_list = fields.Boolean('Private')
-    user = fields.Many2one('res.users', string='User ID', compute='compute_current_user')
-    user_id = fields.Integer(compute='compute_user_id')
-    creator_id = fields.Integer(compute='compute_creator_id')
-    inv = fields.Boolean('invisible', compute='compute_invisible')
     is_product = fields.Boolean(string="Specific product")
     amout_junkfood = fields.Float(string='Amount spend on specific food', compute="compute_junkfood")
     percentage_junkfood = fields.Float(compute='compute_percentage', string="Percentage spent on specific products")
@@ -46,26 +42,6 @@ class FinanceExpense(models.Model):
         if self.is_product == True:
             x = self.amout_junkfood / self.total_price
             self.percentage_junkfood = x * 100
-
-    @api.one
-    def compute_invisible(self):
-        if self.user_id == self.creator_id:
-            self.inv = False
-        else:
-            self.inv = True
-
-    @api.one
-    def compute_current_user(self):
-        self.user = self.env.user
-
-
-    @api.one
-    def compute_creator_id(self):
-        self.creator_id = self.create_uid
-
-    @api.one
-    def compute_user_id(self):
-        self.user_id = self.user.id
 
 
     @api.one
