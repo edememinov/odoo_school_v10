@@ -27,13 +27,14 @@ class FinanceExpense(models.Model):
     @api.depends('expenseline.product_price')
     def compute_junkfood(self):
         self.ensure_one()
-        for x in self:
-            for line in x.expenseline:
-                x.amout_junkfood += line.product_price
+        if self.is_product == True:
+            for x in self:
+                for line in x.expenseline:
+                    x.amout_junkfood += line.product_price
 
     @api.one
     def compute_total_price_product(self):
-        if self.total_price == False:
+        if self.is_product == True:
             self.total_price = self.amout_junkfood
         else:
             self.total_price = self.total_price_input
@@ -42,8 +43,9 @@ class FinanceExpense(models.Model):
 
     @api.one
     def compute_percentage(self):
-        x = self.amout_junkfood / self.total_price
-        self.percentage_junkfood = x * 100
+        if self.is_product == True:
+            x = self.amout_junkfood / self.total_price
+            self.percentage_junkfood = x * 100
 
     @api.one
     def compute_invisible(self):
@@ -69,10 +71,11 @@ class FinanceExpense(models.Model):
     @api.one
     def _compute_food_price(self):
         self.ensure_one()
-        if self.calculate_per_product == False:
-            self.food_price = self.total_price_input
-        else:
-            self.food_price = self.total_price - self.amout_junkfood
+        if self.is_product == True:
+            if self.calculate_per_product == False:
+                self.food_price = self.total_price_input
+            else:
+                self.food_price = self.total_price - self.amout_junkfood
 
 
 
