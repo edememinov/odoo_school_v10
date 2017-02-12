@@ -72,6 +72,7 @@ class FinanceExpense(models.Model):
             self.between_price = self.amout_junkfood
         else:
             self.between_price = self.total_price_input
+        print(self.between_price)
 
 
 
