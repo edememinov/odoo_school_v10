@@ -9,16 +9,17 @@ class FinanceExpense(models.Model):
     name = fields.Char('Name of the expense')
     date = fields.Date("Date", required=True)
     food_price = fields.Float(compute='_compute_food_price')
-    expenseline = fields.One2many('finance.expense.line', 'order_id', "Unnecessary Products", store=True)
+    expenseline = fields.One2many('finance.expense.line', 'order_id', "Specific Products", store=True)
     total_price = fields.Float(string="Total amount paid for products")
     private_list = fields.Boolean('Private')
     user = fields.Many2one('res.users', string='User ID', compute='compute_current_user')
     user_id = fields.Integer(compute='compute_user_id')
     creator_id = fields.Integer(compute='compute_creator_id',string='TEST')
     inv = fields.Boolean('invisible', compute='compute_invisible')
-    is_product = fields.Boolean(string="Is not a necessity")
-    amout_junkfood = fields.Float(string='Amount spend on unnecessary food', compute="compute_junkfood")
-    percentage_junkfood = fields.Float(compute='compute_percentage')
+    is_product = fields.Boolean(string="Specific product")
+    amout_junkfood = fields.Float(string='Amount spend on specific food', compute="compute_junkfood")
+    percentage_junkfood = fields.Float(compute='compute_percentage', string="Percentage spent on specific products")
+    calculate_per_product = fields.Boolean('Calculate total amount per product')
 
 
     @api.one
@@ -55,12 +56,13 @@ class FinanceExpense(models.Model):
         self.user_id = self.user.id
 
 
-
-
     @api.one
     def _compute_food_price(self):
         self.ensure_one()
-        self.food_price = self.total_price - self.amout_junkfood
+        if self.total_price == False:
+            self.total_price = self.amout_junkfood
+        else:
+            self.food_price = self.total_price - self.amout_junkfood
 
 
 
