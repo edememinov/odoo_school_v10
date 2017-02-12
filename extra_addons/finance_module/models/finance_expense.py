@@ -69,7 +69,7 @@ class FinanceExpense(models.Model):
     @api.one
     def _compute_food_price(self):
         self.ensure_one()
-        if self.total_price == False:
+        if self.calculate_per_product == False:
             self.food_price = self.total_price_input
         else:
             self.food_price = self.total_price - self.amout_junkfood
