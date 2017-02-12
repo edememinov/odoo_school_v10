@@ -29,6 +29,12 @@ class FinanceExpense(models.Model):
     @api.one
     def compute_between_price(self):
         self.between_price = self.total_price
+        print(self.between_price)
+        print(self.price_per_person)
+        print(self.total_price)
+        print(self.amout_junkfood)
+        print(self.percentage_junkfood)
+        print(self.total_price_input)
 
     @api.one
     @api.depends('share_with', 'total_price')
@@ -64,6 +70,7 @@ class FinanceExpense(models.Model):
                 self.total_price = self.price_per_person
             else:
                 self.total_price = self.total_price_input
+                self.between_price = self.total_price
 
 
 
