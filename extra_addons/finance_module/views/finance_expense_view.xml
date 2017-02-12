@@ -57,6 +57,7 @@
                             <field name="user_id" invisible="1"/>
                             <field name="user" invisible="1"/>
                             <field name="creator_id" invisible="1"/>
+                            <field name="inv" invisible="1"/>
                             <field name="percentage_junkfood"/>
                             <field name="amout_junkfood"/>
                             <field name="food_price"/>
