@@ -11,7 +11,7 @@ class FinanceExpense(models.Model):
     food_price = fields.Float(compute='_compute_food_price')
     expenseline = fields.One2many('finance.expense.line', 'order_id', "Specific Products", store=True)
     total_price = fields.Float(string="Total amount paid for products", compute='compute_total_price_product')
-    private_list = fields.Boolean('Private')
+    private_list = fields.Boolean('Private', default=True)
     user = fields.Many2one('res.users', string='User ID', compute='compute_current_user')
     user_id = fields.Integer(compute='compute_user_id')
     creator_id = fields.Integer(compute='compute_creator_id')
@@ -38,12 +38,6 @@ class FinanceExpense(models.Model):
         else:
             self.total_price = self.between_price
 
-        print(self.between_price)
-        print(self.price_per_person)
-        print(self.total_price)
-        print(self.amout_junkfood)
-        print(self.percentage_junkfood)
-        print(self.total_price_input)
 
     @api.one
     @api.depends('share_with', 'share_with_person', 'total_price', 'between_price')
@@ -69,12 +63,10 @@ class FinanceExpense(models.Model):
     @api.one
     @api.depends('total_price_input', 'is_product', 'calculate_per_product', 'expenseline')
     def compute_between_price(self):
-        print("Wordt uitgevoerd")
         if self.calculate_per_product == True:
             self.between_price = self.amout_junkfood
         else:
             self.between_price = self.total_price_input
-        print(self.between_price)
 
 
 

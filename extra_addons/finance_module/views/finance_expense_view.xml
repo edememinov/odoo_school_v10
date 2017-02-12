@@ -52,8 +52,7 @@
                         <group name="right">
                             <field name="is_product"/>
                             <field name="expenseline" attrs="{'invisible': [('is_product','=',False)]}"/>
-                            <!--<field name="total_price" attrs="{'invisible': [('calculate_per_product','=',False)]}"/>-->
-                            <field name="total_price"/>
+                            <field name="total_price" attrs="{'invisible': [('calculate_per_product','=',False)]}"/>
                             <field name="total_price_input" attrs="{'invisible': [('calculate_per_product','=',True)]}"/>
                             <field name="calculate_per_product" attrs="{'invisible': [('is_product','=',False)]}"/>
                         </group>
@@ -65,7 +64,6 @@
                             <field name="user" invisible="1"/>
                             <field name="creator_id" invisible="1"/>
                             <field name="inv" invisible="1"/>
-                            <field name="between_price"/>
                             <field name="share_with_person" attrs="{'invisible': ['|',('private_list','=',False),('inv','=',True)]}"/>
                             <field name="price_per_person" attrs="{'invisible': [('share_with_person','=',False)]}"/>
                             <field name="share_with" attrs="{'invisible': ['|',('share_with_person','=',False),('inv','=',True)]}"/>
