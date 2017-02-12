@@ -24,14 +24,15 @@ class FinanceExpense(models.Model):
     share_with = fields.Many2many('res.users', string="Share with")
     price_per_person = fields.Float('Price per person', compute='compute_price_per_person', store=True)
     share_with_person = fields.Boolean('Share this with particular people')
+    between_price = fields.Float()
 
     @api.one
     @api.depends('share_with', 'total_price')
     def compute_price_per_person(self):
         if self.share_with_person == True:
-            count = 1
+            count = 1.0
             for person in self.share_with:
-                count = count + 1
+                count = count + 1.0
             self.price_per_person = self.total_price/count
 
 
@@ -49,13 +50,13 @@ class FinanceExpense(models.Model):
     def compute_total_price_product(self):
         if self.calculate_per_product == True:
             if self.share_with_person == True:
-                self.total_price = self.amout_junkfood
+                self.between_price = self.amout_junkfood
                 self.total_price = self.price_per_person
             else:
                 self.total_price = self.amout_junkfood
         else:
             if self.share_with_person == True:
-                self.total_price = self.total_price_input
+                self.between_price = self.total_price_input
                 self.total_price = self.price_per_person
             else:
                 self.total_price = self.total_price_input
@@ -66,7 +67,7 @@ class FinanceExpense(models.Model):
     def compute_percentage(self):
         if self.is_product == True:
             x = self.amout_junkfood / self.total_price
-            self.percentage_junkfood = x * 100
+            self.percentage_junkfood = x * 100.0
 
     @api.one
     def compute_invisible(self):
@@ -96,7 +97,10 @@ class FinanceExpense(models.Model):
             if self.calculate_per_product == False:
                 self.food_price = self.total_price_input - self.amout_junkfood
             else:
-                self.food_price = self.total_price - self.amout_junkfood
+                if self.share_with_person == True:
+                    self.food_price = self.between_price - self.amout_junkfood
+                else:
+                    self.food_price = self.total_price - self.amout_junkfood
 
 
 
