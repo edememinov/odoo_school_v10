@@ -27,11 +27,12 @@ class FinanceExpense(models.Model):
     @api.one
     @api.depends('share_with', 'total_price')
     def compute_price_per_person(self):
-        count = 0
-        for person in self.share_with:
-            count = count + 1
-        self.price_per_person = self.total_price/count
-        self.total_price = self.price_per_person
+        if self.share_with != False:
+            count = 0
+            for person in self.share_with:
+                count = count + 1
+            self.price_per_person = self.total_price/count
+            self.total_price = self.price_per_person
 
 
 
