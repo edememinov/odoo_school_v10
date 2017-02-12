@@ -68,6 +68,7 @@ class FinanceExpense(models.Model):
     @api.one
     @api.onchange('share_with_person')
     def compute_between_price(self):
+        print("Wordt uitgevoerd")
         if self.calculate_per_product == True:
                 self.between_price = self.amout_junkfood
         else:
