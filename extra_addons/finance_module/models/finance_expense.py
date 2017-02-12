@@ -66,7 +66,7 @@ class FinanceExpense(models.Model):
                     x.amout_junkfood += line.product_price
 
     @api.one
-    @api.onchange('total_price_input')
+    @api.onchange('share_with_person')
     def compute_between_price(self):
         if self.calculate_per_product == True:
                 self.between_price = self.amout_junkfood
