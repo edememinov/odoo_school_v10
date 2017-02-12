@@ -21,6 +21,20 @@ class FinanceExpense(models.Model):
     percentage_junkfood = fields.Float(compute='compute_percentage', string="Percentage spent on specific products")
     calculate_per_product = fields.Boolean('Calculate total amount per product')
     total_price_input = fields.Float("Total amount paid for products")
+    share_with = fields.Many2many('res.user', string="Share with")
+    price_per_person = fields.Float('Price per person', compute='compute_price_per_person', store=True)
+
+    @api.one
+    @api.depends('share_with', 'total_price')
+    def compute_price_per_person(self):
+        count = 0
+        for person in self.share_with:
+            count = count + 1
+        self.price_per_person = self.total_price/count
+        self.total_price = self.price_per_person
+
+
+
 
 
     @api.one
