@@ -28,13 +28,6 @@ class FinanceExpense(models.Model):
 
 
     @api.one
-    @api.depends('total_price_input', 'is_product', 'calculate_per_product')
-    def change_private(self):
-        if self.private_list == True:
-            self.share_with_person = False
-
-
-    @api.one
     @api.depends('total_price_input', 'is_product', 'calculate_per_product', 'expenseline', 'between_price')
     def compute_total_price_product(self):
         if self.share_with_person == True:

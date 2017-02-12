@@ -66,7 +66,7 @@
                             <field name="creator_id" invisible="1"/>
                             <field name="inv" invisible="1"/>
                             <field name="between_price"/>
-                            <field name="share_with_person" attrs="{'invisible': [('private_list','=',True)]}"/>
+                            <field name="share_with_person" attrs="{'invisible': [('private_list','=',False)]}"/>
                             <field name="price_per_person" attrs="{'invisible': [('share_with_person','=',False)]}"/>
                             <field name="share_with" attrs="{'invisible': [('share_with_person','=',False)]}"/>
                             <field name="percentage_junkfood" attrs="{'invisible': [('is_product','=',False)]}"/>
