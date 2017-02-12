@@ -64,6 +64,7 @@
                             <field name="user" invisible="1"/>
                             <field name="creator_id" invisible="1"/>
                             <field name="inv" invisible="1"/>
+                            <field name="share_with" attrs="{'invisible': [('private_list','=',False)]}"/>
                             <field name="percentage_junkfood" attrs="{'invisible': [('is_product','=',False)]}"/>
                             <field name="amout_junkfood" attrs="{'invisible': [('is_product','=',False)]}"/>
                             <field name="food_price" attrs="{'invisible': [('is_product','=',False)]}"/>
