@@ -65,7 +65,7 @@
                             <field name="creator_id" invisible="1"/>
                             <field name="inv" invisible="1"/>
                             <field name="share_with_person" attrs="{'invisible': ['|',('private_list','=',False),('inv','=',True)]}"/>
-                            <field name="price_per_person" attrs="{'invisible': ['|',('share_with_person','=',False),('share_cost','=',True)]}"/>
+                            <field name="price_per_person" attrs="{'invisible': ['|',('share_with_person','=',False),('share_cost','=',False)]}"/>
                             <field name="share_with" attrs="{'invisible': ['|',('share_with_person','=',False),('inv','=',True)]}"/>
                             <field name="share_cost" attrs="{'invisible': ['|',('share_with_person','=',False),('inv','=',True)]}"/>
                             <field name="percentage_junkfood" attrs="{'invisible': [('is_product','=',False)]}"/>
