@@ -87,8 +87,9 @@ class FinanceExpense(models.Model):
     @api.one
     def compute_percentage(self):
         if self.is_product == True:
-            x = self.amout_junkfood / self.between_price
-            self.percentage_junkfood = x * 100.0
+            if self.between_price != False:
+                x = self.amout_junkfood / self.between_price
+                self.percentage_junkfood = x * 100.0
 
     @api.one
     def compute_invisible(self):
