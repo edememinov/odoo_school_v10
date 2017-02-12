@@ -23,18 +23,16 @@ class FinanceExpense(models.Model):
     total_price_input = fields.Float("Total amount paid for products")
     share_with = fields.Many2many('res.users', string="Share with")
     price_per_person = fields.Float('Price per person', compute='compute_price_per_person', store=True)
+    share_with_person = fields.Boolean('Share this with particular people')
 
     @api.one
     @api.depends('share_with', 'total_price')
     def compute_price_per_person(self):
-        if self.share_with != False:
+        if self.share_with_person == True:
             count = 1
             for person in self.share_with:
                 count = count + 1
             self.price_per_person = self.total_price/count
-            self.total_price = self.price_per_person
-
-
 
 
 
@@ -50,9 +48,15 @@ class FinanceExpense(models.Model):
     @api.one
     def compute_total_price_product(self):
         if self.calculate_per_product == True:
-            self.total_price = self.amout_junkfood
+            if self.share_with_person == True:
+                self.total_price = self.price_per_person
+            else:
+                self.total_price = self.amout_junkfood
         else:
-            self.total_price = self.total_price_input
+            if self.share_with_person == True:
+                self.total_price = self.price_per_person
+            else:
+                self.total_price = self.total_price_input
 
 
 
