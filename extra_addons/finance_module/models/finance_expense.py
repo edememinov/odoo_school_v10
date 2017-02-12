@@ -27,8 +27,15 @@ class FinanceExpense(models.Model):
     between_price = fields.Float(compute='compute_between_price')
 
     @api.one
-    def compute_between_price(self):
-        self.between_price = self.total_price
+    def compute_total_price_product(self):
+        if self.share_with_person == True:
+            y = self.total_price
+            self.total_price = self.price_per_person
+            self.between_price = y
+
+        else:
+            self.total_price = self.between_price
+
         print(self.between_price)
         print(self.price_per_person)
         print(self.total_price)
@@ -43,7 +50,8 @@ class FinanceExpense(models.Model):
             count = 1.0
             for person in self.share_with:
                 count = count + 1.0
-            self.price_per_person = self.total_price/count
+            self.price_per_person = self.between_price/count
+
 
 
 
@@ -57,30 +65,18 @@ class FinanceExpense(models.Model):
                     x.amout_junkfood += line.product_price
 
     @api.one
-    def compute_total_price_product(self):
+    def compute_between_price(self):
         if self.calculate_per_product == True:
-            if self.share_with_person == True:
                 self.between_price = self.amout_junkfood
-                self.total_price = self.price_per_person
-            else:
-                self.total_price = self.amout_junkfood
         else:
-            if self.share_with_person == True:
                 self.between_price = self.total_price_input
-                self.total_price = self.price_per_person
-            else:
-                self.total_price = self.total_price_input
-                self.between_price = self.total_price
 
 
 
     @api.one
     def compute_percentage(self):
         if self.is_product == True:
-            if self.share_with_person == True:
-                x = self.amout_junkfood / self.between_price
-            else:
-                x = self.amout_junkfood / self.total_price
+            x = self.amout_junkfood / self.between_price
             self.percentage_junkfood = x * 100.0
 
     @api.one
@@ -110,11 +106,9 @@ class FinanceExpense(models.Model):
         if self.is_product == True:
             if self.calculate_per_product == False:
                 self.food_price = self.total_price_input - self.amout_junkfood
+
             else:
-                if self.share_with_person == True:
-                    self.food_price = self.between_price - self.amout_junkfood
-                else:
-                    self.food_price = self.total_price - self.amout_junkfood
+                self.food_price = self.between_price - self.amout_junkfood
 
 
 
