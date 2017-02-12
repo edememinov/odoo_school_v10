@@ -73,7 +73,7 @@ class FinanceExpense(models.Model):
         self.ensure_one()
         if self.is_product == True:
             if self.calculate_per_product == False:
-                self.food_price = self.total_price_input
+                self.food_price = self.total_price_input - self.amout_junkfood
             else:
                 self.food_price = self.total_price - self.amout_junkfood
 
