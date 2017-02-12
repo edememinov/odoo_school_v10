@@ -17,7 +17,7 @@ class FinanceExpense(models.Model):
     creator_id = fields.Integer(compute='compute_creator_id')
     inv = fields.Boolean('invisible', compute='compute_invisible')
     is_product = fields.Boolean(string="Specific product")
-    amout_junkfood = fields.Float(string='Amount spend on specific food', compute="compute_junkfood")
+    amout_junkfood = fields.Float(string='Amount spend on specific products', compute="compute_junkfood")
     percentage_junkfood = fields.Float(compute='compute_percentage', string="Percentage spent on specific products")
     calculate_per_product = fields.Boolean('Calculate total amount per product')
     total_price_input = fields.Float("Total amount paid for products")
