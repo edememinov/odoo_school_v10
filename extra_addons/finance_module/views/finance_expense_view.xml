@@ -46,6 +46,7 @@
                     <group name="top">
                         <group name="left">
                             <field name="name"/>
+                            <field name="shop"/>
                             <field name="private_list" attrs="{'invisible': [('inv','=',True)]}"/>
                             <field name="date"/>
                         </group>
