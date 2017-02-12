@@ -25,12 +25,14 @@ class FinanceExpense(models.Model):
     price_per_person = fields.Float('Price per person', compute='compute_price_per_person', store=True)
     share_with_person = fields.Boolean('Share this with particular people')
     between_price = fields.Float(compute='compute_between_price')
+    shop = fields.Many2one('finance.shop')
+    share_cost = fields.Boolean('Share costs')
 
 
     @api.one
     @api.depends('total_price_input', 'is_product', 'calculate_per_product', 'expenseline', 'between_price')
     def compute_total_price_product(self):
-        if self.share_with_person == True:
+        if self.share_cost == True:
             y = self.total_price
             self.total_price = self.price_per_person
             self.between_price = y
@@ -42,7 +44,7 @@ class FinanceExpense(models.Model):
     @api.one
     @api.depends('share_with', 'share_with_person', 'total_price', 'between_price')
     def compute_price_per_person(self):
-        if self.share_with_person == True:
+        if self.share_cost == True:
             count = 1.0
             for person in self.share_with:
                 count = count + 1.0
