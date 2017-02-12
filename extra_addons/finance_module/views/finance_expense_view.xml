@@ -53,6 +53,7 @@
                             <field name="is_product"/>
                             <field name="expenseline" attrs="{'invisible': [('is_product','=',False)]}"/>
                             <field name="total_price" attrs="{'readonly': [('calculate_per_product','=',False)]}"/>
+                            <field name="calculate_per_product"/>
                         </group>
                     </group>
                     <group name="bottom">
