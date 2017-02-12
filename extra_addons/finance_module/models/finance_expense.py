@@ -24,7 +24,11 @@ class FinanceExpense(models.Model):
     share_with = fields.Many2many('res.users', string="Share with")
     price_per_person = fields.Float('Price per person', compute='compute_price_per_person', store=True)
     share_with_person = fields.Boolean('Share this with particular people')
-    between_price = fields.Float()
+    between_price = fields.Float(compute='compute_between_price')
+
+    @api.one
+    def compute_between_price(self):
+        self.between_price = self.total_price
 
     @api.one
     @api.depends('share_with', 'total_price')
