@@ -6,12 +6,15 @@ class FinanceIncome(models.Model):
 
     _name = "finance.income"
     _description = "Income"
-    _inherit = 'finance.share'
 
     date = fields.Date("Date")
     amount_received = fields.Float("Amount received")
     received_from = fields.Char("Received from")
-
+    private_list = fields.Boolean('Private')
+    user = fields.Many2one('res.users', string='User ID', compute='compute_current_user')
+    user_id = fields.Integer(compute='compute_user_id')
+    creator_id = fields.Integer(compute='compute_creator_id',string='TEST')
+    inv = fields.Boolean('invisible', compute='compute_invisible')
 
     @api.one
     def compute_invisible(self):

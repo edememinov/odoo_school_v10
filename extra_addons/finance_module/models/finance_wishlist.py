@@ -5,12 +5,17 @@ from odoo import api, fields, models
 class FinanceWishlist(models.Model):
     _name = "finance.wishlist"
     _description = "Wishlist"
-    _inherit = 'finance.share'
+
+
 
     name = fields.Char('Name of the wishlist')
     total_price = fields.Float(compute='_compute_total_price')
     wishlistline = fields.One2many('finance.wishlist.line', 'order_id', "Products", store=True)
-
+    private_list = fields.Boolean('Private')
+    user = fields.Many2one('res.users', string='User ID', compute='compute_current_user')
+    user_id = fields.Integer(compute='compute_user_id')
+    creator_id = fields.Integer(compute='compute_creator_id', string='TEST')
+    inv = fields.Boolean('invisible', compute='compute_invisible')
 
     @api.one
     def compute_invisible(self):
