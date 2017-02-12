@@ -34,7 +34,7 @@ class FinanceExpense(models.Model):
 
 
     @api.one
-    @api.depends('total_price_input', 'is_product', 'calculate_per_product', 'expenseline')
+    @api.depends('total_price_input', 'is_product', 'calculate_per_product', 'expenseline', 'between_price')
     def compute_total_price_product(self):
         if self.share_with_person == True:
             y = self.total_price
