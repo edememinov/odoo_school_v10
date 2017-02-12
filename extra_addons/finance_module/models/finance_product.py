@@ -6,8 +6,7 @@ class FinanceProduct(models.Model):
     _name = "finance.product"
     _description = "Products"
 
-    name = fields.Char("Product name", compute='compute_product_name', readonly=True)
-    product_name = fields.Char('Name of the product')
+    name = fields.Char("Product name")
     price = fields.Float("Product Price")
     store = fields.Many2one('finance.shop', "Store")
     is_non_food = fields.Boolean('Product is non food')
