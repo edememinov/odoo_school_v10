@@ -49,8 +49,8 @@ class FinanceExpense(models.Model):
         print(self.percentage_junkfood)
         print(self.total_price_input)
 
-    @api.onchange('share_with_person')
     @api.one
+    @api.depends('share_with', 'share_with_person', 'total_price')
     def compute_price_per_person(self):
         if self.share_with_person == True:
             count = 1.0
