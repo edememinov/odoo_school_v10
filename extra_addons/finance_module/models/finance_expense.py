@@ -52,7 +52,7 @@ class FinanceExpense(models.Model):
         print(self.total_price_input)
 
     @api.one
-    @api.depends('share_with', 'share_with_person', 'total_price')
+    @api.depends('share_with', 'share_with_person', 'total_price', 'between_price')
     def compute_price_per_person(self):
         if self.share_with_person == True:
             count = 1.0
