@@ -26,6 +26,7 @@ class FinanceExpense(models.Model):
     share_with_person = fields.Boolean('Share this with particular people')
     between_price = fields.Float(compute='compute_between_price')
 
+
     @api.one
     @api.depends('total_price_input', 'is_product', 'calculate_per_product')
     def change_private(self):
