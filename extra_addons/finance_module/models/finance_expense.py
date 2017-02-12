@@ -89,7 +89,7 @@ class FinanceExpenseLine(models.Model):
     @api.depends('amount', 'price_per_product')
     def _compute_total_product_price(self):
         self.ensure_one()
-        if self.is_discount == False:
+        if self.calculate_per_product == True:
             for x in self:
                 x.product_price = x.amount * x.price_per_product
         else:
