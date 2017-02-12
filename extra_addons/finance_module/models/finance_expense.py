@@ -85,7 +85,6 @@ class FinanceExpense(models.Model):
 
 
     @api.one
-    @api.depends('total_price_input', 'is_product', 'calculate_per_product', 'expenseline', 'between_price')
     def compute_percentage(self):
         if self.is_product == True:
             x = self.amout_junkfood / self.between_price
