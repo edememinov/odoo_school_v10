@@ -2,7 +2,7 @@
 from odoo import api, fields, models
 
 
-class FinanceExpense(models.Model):
+class FinanceShare(models.Model):
     _name = "finance.share"
     _description = "Share"
 
