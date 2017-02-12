@@ -52,7 +52,7 @@
                         <group name="right">
                             <field name="is_product"/>
                             <field name="expenseline" attrs="{'invisible': [('is_product','=',False)]}"/>
-                            <field name="total_price" attrs="{'invisible': [('calculate_per_product','=',False)]}"/>
+                            <field name="total_price"/>
                             <field name="total_price_input" attrs="{'invisible': [('calculate_per_product','=',True)]}"/>
                             <field name="calculate_per_product" attrs="{'invisible': [('is_product','=',False)]}"/>
                         </group>
