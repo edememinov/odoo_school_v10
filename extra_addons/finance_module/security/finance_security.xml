@@ -20,7 +20,7 @@
         <record id="finance_expense_user_rule" model="ir.rule">
             <field name="name">Finance Expense User Rule</field>
             <field name="model_id" ref="model_finance_expense"/>
-            <field name="domain_force">['|',('create_uid','=',user.id)]['&',('private_list','=',False ),'('share_with.id','=',user.id )']
+            <field name="domain_force">['|',('create_uid','=',user.id),'&',('private_list','=',False ),'('share_with.id','=',user.id )']
             </field>
             <field name="groups" eval="[(4,ref('base.group_user'))]"/>
         </record>
