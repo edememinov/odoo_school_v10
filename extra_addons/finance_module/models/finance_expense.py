@@ -71,6 +71,7 @@ class FinanceExpense(models.Model):
                     x.amout_junkfood += line.product_price
 
     @api.one
+    @api.depends('total_price_input', 'is_product', 'calculate_per_product')
     def compute_between_price(self):
         print("Wordt uitgevoerd")
         if self.calculate_per_product == True:
