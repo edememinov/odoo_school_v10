@@ -66,7 +66,10 @@ class FinanceExpense(models.Model):
     @api.one
     def compute_percentage(self):
         if self.is_product == True:
-            x = self.amout_junkfood / self.total_price
+            if self.share_with_person == True:
+                x = self.amout_junkfood / self.between_price
+            else:
+                x = self.amout_junkfood / self.total_price
             self.percentage_junkfood = x * 100.0
 
     @api.one
