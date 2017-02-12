@@ -30,7 +30,7 @@ class FinanceExpense(models.Model):
 
 
     @api.one
-    @api.depends('total_price_input', 'is_product', 'calculate_per_product', 'expenseline', 'between_price')
+    @api.depends('total_price_input', 'is_product', 'calculate_per_product', 'expenseline', 'between_price', 'share_cost')
     def compute_total_price_product(self):
         if self.share_cost == True:
             y = self.total_price
@@ -42,7 +42,7 @@ class FinanceExpense(models.Model):
 
 
     @api.one
-    @api.depends('share_with', 'share_with_person', 'total_price', 'between_price')
+    @api.depends('share_with', 'share_with_person', 'total_price', 'between_price', 'share_cost')
     def compute_price_per_person(self):
         if self.share_cost == True:
             count = 1.0
