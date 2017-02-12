@@ -27,12 +27,14 @@ class FinanceExpense(models.Model):
     between_price = fields.Float(compute='compute_between_price')
 
     @api.one
+    @api.depends('total_price_input', 'is_product', 'calculate_per_product')
     def change_private(self):
         if self.private_list == True:
             self.share_with_person = False
 
 
     @api.one
+    @api.depends('total_price_input', 'is_product', 'calculate_per_product')
     def compute_total_price_product(self):
         if self.share_with_person == True:
             y = self.total_price
@@ -83,6 +85,7 @@ class FinanceExpense(models.Model):
 
 
     @api.one
+    @api.depends('total_price_input', 'is_product', 'calculate_per_product')
     def compute_percentage(self):
         if self.is_product == True:
             x = self.amout_junkfood / self.between_price
@@ -110,6 +113,7 @@ class FinanceExpense(models.Model):
 
 
     @api.one
+    @api.depends('total_price_input', 'is_product', 'calculate_per_product')
     def _compute_food_price(self):
         self.ensure_one()
         if self.is_product == True:
