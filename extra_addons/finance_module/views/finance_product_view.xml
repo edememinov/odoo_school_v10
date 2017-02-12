@@ -26,7 +26,6 @@
                         </group>
                     </group>
                     <group name="bottom">
-                        <field name="type_food" attrs="{'invisible': [('is_non_food', '=', True)]}"/>
                         <field name="type_non_food" attrs="{'invisible': [('is_non_food', '=', False)]}"/>
                     </group>
 
@@ -78,19 +77,6 @@
             name="Type Food"
             sequence="20"
             parent="menu_finance_product"
-        />
-
-        <act_window id="action_finance_type_food"
-            name="Type Food"
-            res_model="finanace.type.food"
-            view_mode="tree,form"
-        />
-
-        <menuitem id="menu_finance_type_food"
-            name="Type Food"
-            sequence="20"
-            action="action_finance_type_food"
-            parent="menu_finance_types"
         />
 
 

@@ -11,26 +11,12 @@ class FinanceProduct(models.Model):
     price = fields.Float("Product Price")
     store = fields.Many2one('finance.shop', "Store")
     is_non_food = fields.Boolean('Product is non food')
-    type_food = fields.Many2one('finanace.type.food')
     type_non_food = fields.Many2one('finanace.type.non.food')
     private_list = fields.Boolean('Private')
     user = fields.Many2one('res.users', string='User ID', compute='compute_current_user')
     user_id = fields.Integer(compute='compute_user_id')
     creator_id = fields.Integer(compute='compute_creator_id',string='TEST')
     inv = fields.Boolean('invisible', compute='compute_invisible')
-    barcode = fields.Char('Barcode')
-
-
-    @api.one
-    def compute_product_name(self):
-        if self.barcode == False:
-            simpleText = str(
-            str(self.product_name) +  "   Shop:" + str(self.store.name))
-            self.name = str(simpleText)
-
-        else:
-            simpleText = str(str(self.product_name) +"   [" + str(self.barcode) + "]" + "   Shop:" + str(self.store.name))
-            self.name = str(simpleText)
 
 
     @api.one
@@ -51,13 +37,6 @@ class FinanceProduct(models.Model):
     @api.one
     def compute_user_id(self):
         self.user_id = self.user.id
-
-
-class TypeFoodProduct(models.Model):
-    _name = 'finanace.type.food'
-    _description = "Food types"
-
-    name = fields.Char('Food type')
 
 
 class TypeNonFoodProduct(models.Model):
