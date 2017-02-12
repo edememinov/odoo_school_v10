@@ -5,7 +5,7 @@ from odoo import api, fields, models
 class FinanceExpense(models.Model):
     _name = "finance.expense"
     _description = "Expenses"
-    _inherit = 'finance.share'
+    _inherits = 'finance.share'
 
     name = fields.Char('Name of the expense')
     date = fields.Date("Date", required=True)
