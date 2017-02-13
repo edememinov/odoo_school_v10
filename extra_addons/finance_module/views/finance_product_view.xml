@@ -5,7 +5,7 @@
             <field name="name">finance.product.form</field>
             <field name="model">finance.product</field>
             <field name="arch" type="xml">
-                <form string="Banking" >
+                <form string="Product" >
 
                     <group name="top">
                         <group name="left">
@@ -24,11 +24,19 @@
                         </group>
                     </group>
                     <group name="bottom">
-                        <field name="type_food" attrs="{'invisible': [('is_non_food', '=', True)]}"/>
                         <field name="type_non_food" attrs="{'invisible': [('is_non_food', '=', False)]}"/>
                     </group>
 
                 </form>
+            </field>
+        </record>
+
+             <record id="finance_product_search" model="ir.ui.view">
+            <field name="name">finance.product.search</field>
+            <field name="model">finance.product</field>
+            <field name="arch" type="xml">
+                 <search string="Products">
+                 </search>
             </field>
         </record>
 
@@ -65,19 +73,6 @@
             name="Type Food"
             sequence="20"
             parent="menu_finance_product"
-        />
-
-        <act_window id="action_finance_type_food"
-            name="Type Food"
-            res_model="finanace.type.food"
-            view_mode="tree,form"
-        />
-
-        <menuitem id="menu_finance_type_food"
-            name="Type Food"
-            sequence="20"
-            action="action_finance_type_food"
-            parent="menu_finance_types"
         />
 
 

@@ -46,18 +46,32 @@
                     <group name="top">
                         <group name="left">
                             <field name="name"/>
+                            <field name="shop"/>
                             <field name="private_list" attrs="{'invisible': [('inv','=',True)]}"/>
                             <field name="date"/>
                         </group>
                         <group name="right">
-                            <field name="expenseline"/>
-
-                            <field name="total_price"/>
+                            <field name="is_product"/>
+                            <field name="expenseline" attrs="{'invisible': [('is_product','=',False)]}"/>
+                            <field name="between_price" attrs="{'invisible': [('calculate_per_product','=',False)]}"/>
+                            <field name="total_price_input" attrs="{'invisible': [('calculate_per_product','=',True)]}"/>
+                            <field name="calculate_per_product" attrs="{'invisible': [('is_product','=',False)]}"/>
+                        </group>
+                    </group>
+                    <group name="bottom">
+                        <group name="left">
                             <field name="create_uid" invisible="1"/>
                             <field name="user_id" invisible="1"/>
                             <field name="user" invisible="1"/>
                             <field name="creator_id" invisible="1"/>
                             <field name="inv" invisible="1"/>
+                            <field name="share_with_person" attrs="{'invisible': ['|',('private_list','=',False),('inv','=',True)]}"/>
+                            <field name="price_per_person" attrs="{'invisible': ['|',('share_with_person','=',False),('share_cost','=',False)]}"/>
+                            <field name="share_with" attrs="{'invisible': ['|',('share_with_person','=',False),('inv','=',True)]}"/>
+                            <field name="share_cost" attrs="{'invisible': ['|',('share_with_person','=',False),('inv','=',True)]}"/>
+                            <field name="percentage_junkfood" attrs="{'invisible': [('is_product','=',False)]}"/>
+                            <field name="amout_junkfood" attrs="{'invisible': [('is_product','=',False)]}"/>
+                            <field name="food_price" attrs="{'invisible': ['|',('is_product','=',False),('calculate_per_product','=',True)]}"/>
                         </group>
                     </group>
                 </form>
