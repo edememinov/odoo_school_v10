@@ -15,7 +15,7 @@ class FinanceBank(models.Model):
     expense_id = fields.Many2many('finance.expense')
     date = fields.Date('Date')
     products = fields.Many2many('finance.product', compute='products_in_expense', readonly=True, store=True)
-    date_this_month = fields.Date(compute='compute_this_month')
+    date_this_month = fields.Date(compute='compute_this_month', store=True)
 
     @api.one
     def compute_this_month(self):
