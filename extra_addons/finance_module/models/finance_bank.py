@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models
+import datetime
 
 
 class FinanceBank(models.Model):
@@ -14,6 +15,13 @@ class FinanceBank(models.Model):
     expense_id = fields.Many2many('finance.expense')
     date = fields.Date('Date')
     products = fields.Many2many('finance.product', compute='products_in_expense', readonly=True, store=True)
+    date_this_month = fields.Date(compute='compute_this_month')
+
+
+    @api.one
+    def compute_this_month(self):
+        now = datetime.datetime.now()
+        self.date_this_month = now.month
 
 
     @api.one
