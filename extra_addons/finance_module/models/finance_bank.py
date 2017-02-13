@@ -23,8 +23,6 @@ class FinanceBank(models.Model):
         self.date_this_month = now.month
 
 
-
-
     @api.one
     @api.depends('expense_id.expenseline.product_id')
     def products_in_expense(self):

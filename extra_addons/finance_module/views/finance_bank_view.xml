@@ -55,7 +55,7 @@
                     <field name="computed_total_expense" type="measure" />
                     <field name="computed_total_income" type="measure" />
                     <field name="date" interval="month"/>
-                    <field name="date.Today()" interval=""
+                    <field name="date_this_month"/>
                 </graph>
             </field>
         </record>
