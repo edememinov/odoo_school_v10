@@ -11,11 +11,15 @@ class FinanceBank(models.Model):
     computed_total_expense = fields.Float(compute='compute_total_expense', store=True)
     computed_total_income = fields.Float(compute='compute_total_income', store=True)
     computed_total = fields.Float(compute='compute_total', store=True)
-    income_id = fields.Many2many('finance.income')
+    income_id = fields.Many2many('finance.income', compute='compute_expenses')
     expense_id = fields.Many2many('finance.expense')
     date = fields.Date('Date')
     products = fields.Many2many('finance.product', compute='products_in_expense', readonly=True, store=True)
 
+    @api.one
+    def compute_expenses(self):
+        date = datetime.strptime(self.date, '%Y-%m')
+        self.expense_id = self.env['finance.expense'].search(['|', ('date', 'like', date)])
 
     @api.one
     @api.depends('expense_id.expenseline.product_id')
