@@ -11,9 +11,9 @@ class FinanceLoan(models.Model):
     _order = 'date'
 
     name = fields.Char('Name', required=True)
-    computed_total_expense = fields.Float(compute='compute_total_expense', store=True)
-    computed_total_income = fields.Float(compute='compute_total_income', store=True)
-    computed_total = fields.Float(compute='compute_total', store=True)
+    computed_total_expense = fields.Float(compute='compute_total_expense', store=True, string="Amount paid back")
+    computed_total_income = fields.Float(compute='compute_total_income', store=True, string="Amount that has to be paid back")
+    computed_total = fields.Float(compute='compute_total', store=True, string="Amount left to pay back")
     income_id = fields.Many2many('finance.income', store=True, string='Debt paid back')
     expense_id = fields.Many2many('finance.expense', store=True, string='Debt')
     date = fields.Date('Date', required=True)

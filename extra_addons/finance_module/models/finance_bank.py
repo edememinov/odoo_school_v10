@@ -11,9 +11,9 @@ class FinanceBank(models.Model):
     _order = 'date'
 
     name = fields.Char('Name', required=True)
-    computed_total_expense = fields.Float(compute='compute_total_expense', store=True)
-    computed_total_income = fields.Float(compute='compute_total_income', store=True)
-    computed_total = fields.Float(compute='compute_total', store=True)
+    computed_total_expense = fields.Float(compute='compute_total_expense', store=True, string="Total expense")
+    computed_total_income = fields.Float(compute='compute_total_income', store=True, string="Total income")
+    computed_total = fields.Float(compute='compute_total', store=True, string="Left over")
     income_id = fields.Many2many('finance.income', compute='compute_income', store=True)
     expense_id = fields.Many2many('finance.expense', compute='compute_expenses', store=True)
     date = fields.Date('Date', required=True)
@@ -68,5 +68,28 @@ class FinanceBank(models.Model):
         self.ensure_one()
         for x in self:
            x.computed_total =  x.computed_total_income - x.computed_total_expense
+
+
+
+class FinanceBankCal(models.Model):
+    _name = "finance.bank.cal"
+
+    name = fields.Char('Name')
+    date = fields.Date("Date")
+    bank = fields.Many2many('finance.bank', compute='compute_bank')
+    amount = fields.Float('Current Amount', compute='compute_bank_amount')
+
+    @api.depends('name','date')
+    @api.one
+    def compute_bank(self):
+        self.bank = self.env['finance.bank'].search([(True,'=',True)])
+
+    @api.one
+    def compute_bank_amount(self):
+        for bank in self.bank:
+            for banks in bank:
+                self.amount += banks.computed_total
+
+
 
 

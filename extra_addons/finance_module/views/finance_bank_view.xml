@@ -87,6 +87,7 @@
                     <field name="date"/>
                     <field name="computed_total_expense"/>
                     <field name="computed_total_income"/>
+                    <field name="computed_total"/>
                 </tree>
             </field>
         </record>
@@ -96,6 +97,13 @@
             res_model="finance.bank"
             view_mode="tree,form"
             context="{'group_by':'date'}"
+        />
+
+
+        <act_window id="action_finance_bank_cal"
+            name="Bank"
+            res_model="finance.bank.cal"
+            view_mode="tree,form"
         />
 
         <record model="ir.actions.act_window" id="action_finance_bank_dashboard">
@@ -111,6 +119,12 @@
             <field name="view_mode">graph</field>
             <field name="view_id" ref="view_graph_expense"/>
         </record>
+
+
+        <menuitem id="menu_finance_bank_cal"
+            name="Bank statement"
+            sequence="20"
+            action="action_finance_bank_cal" />
 
         <menuitem id="menu_finance_expense_dashboard"
             name="Expense Dashboard"
