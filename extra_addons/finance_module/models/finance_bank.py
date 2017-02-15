@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models
 import datetime
+from dateutil.relativedelta import relativedelta
+
 
 
 class FinanceBank(models.Model):
@@ -8,18 +10,30 @@ class FinanceBank(models.Model):
     _description = "Bank"
     _order = 'date'
 
+    name = fields.Char('Name', required=True)
     computed_total_expense = fields.Float(compute='compute_total_expense', store=True)
     computed_total_income = fields.Float(compute='compute_total_income', store=True)
     computed_total = fields.Float(compute='compute_total', store=True)
-    income_id = fields.Many2many('finance.income', compute='compute_expenses')
-    expense_id = fields.Many2many('finance.expense')
-    date = fields.Date('Date')
+    income_id = fields.Many2many('finance.income', compute='compute_income', store=True)
+    expense_id = fields.Many2many('finance.expense', compute='compute_expenses', store=True)
+    date = fields.Date('Date', required=True)
     products = fields.Many2many('finance.product', compute='products_in_expense', readonly=True, store=True)
 
     @api.one
     def compute_expenses(self):
-        date = datetime.strptime(self.date, '%Y-%m')
-        self.expense_id = self.env['finance.expense'].search(['|', ('date', 'like', date)])
+        date = datetime.datetime.strptime(self.date, '%Y-%m-%d')
+        date_begin = date - relativedelta(months=1)
+        date_end = date + relativedelta(months=1)
+        print(date)
+        self.expense_id = self.env['finance.expense'].search([('date', '>', date_begin), ('date', '<', date_end)])
+
+    @api.one
+    def compute_income(self):
+        date = datetime.datetime.strptime(self.date, '%Y-%m-%d')
+        date_begin = date - relativedelta(months=1)
+        date_end = date + relativedelta(months=1)
+        print(date)
+        self.income_id = self.env['finance.income'].search([('date', '>', date_begin), ('date', '<', date_end)])
 
     @api.one
     @api.depends('expense_id.expenseline.product_id')
@@ -32,7 +46,7 @@ class FinanceBank(models.Model):
                         banks.products += products
 
     @api.one
-    @api.depends('expense_id.total_price')
+    @api.depends('expense_id')
     def compute_total_expense(self):
         self.ensure_one()
         for x in self:
@@ -41,7 +55,7 @@ class FinanceBank(models.Model):
 
 
     @api.one
-    @api.depends('income_id.amount_received')
+    @api.depends('income_id')
     def compute_total_income(self):
         self.ensure_one()
         for z in self:

@@ -16,7 +16,8 @@ Getting my sheet together. Finance module for me
         'views/finance_product_view.xml',
         'views/finance_wishlist.xml',
         # 'security/finance_security.csv',
-        'security/finance_security.xml'
+        'security/finance_security.xml',
+        'views/finance_loan_view.xml',
 
 
           ],

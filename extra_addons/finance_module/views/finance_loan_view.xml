@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="finance_loan_form" model="ir.ui.view">
+            <field name="name">finance.loan.form</field>
+            <field name="model">finance.loan</field>
+            <field name="arch" type="xml">
+                <form string="Loan" >
+
+                    <group name="top">
+                        <field name="name"/>
+                        <group name="left">
+                            <field name="income_id">
+                                <tree>
+                                    <field name="date"/>
+                                    <field name="amount_received"/>
+                                    <field name="received_from"/>
+                                </tree>
+                            </field>
+                            <field name="computed_total_income"/>
+                        </group>
+                        <group name="right">
+                            <field name="expense_id">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                    <field name="total_price"/>
+                                </tree>
+                            </field>
+                            <field name="computed_total_expense"/>
+                        </group>
+                    </group>
+                    <group name="bottom">
+                        <field name="computed_total"/>
+                        <field name="date"/>
+
+                        <field name="products">
+                            <tree>
+                                <field name="name"/>
+                                <field name="price"/>
+                                <field name="store"/>
+                            </tree>
+                        </field>
+                    </group>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_tree_loan" model="ir.ui.view">
+            <field name="name">Loan Tree view</field>
+            <field name="model">finance.loan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="computed_total_expense"/>
+                    <field name="computed_total_income"/>
+                </tree>
+            </field>
+        </record>
+
+        <act_window id="action_finance_loan"
+            name="Loan"
+            res_model="finance.loan"
+            view_mode="tree,form"
+            context="{'group_by':'date'}"
+        />
+
+
+        <menuitem id="menu_finance_loan"
+            name="Loan"
+            sequence="20"
+            action="action_finance_loan" />
+
+
+    </data>
+</openerp>

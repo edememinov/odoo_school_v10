@@ -8,6 +8,7 @@
                 <form string="Banking" >
 
                     <group name="top">
+                        <field name="name"/>
                         <group name="left">
                             <field name="income_id">
                                 <tree>
@@ -82,6 +83,7 @@
             <field name="model">finance.bank</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="name"/>
                     <field name="date"/>
                     <field name="computed_total_expense"/>
                     <field name="computed_total_income"/>
