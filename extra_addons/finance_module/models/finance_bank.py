@@ -14,8 +14,8 @@ class FinanceBank(models.Model):
     computed_total_expense = fields.Float(compute='compute_total_expense', store=True, string="Total expense")
     computed_total_income = fields.Float(compute='compute_total_income', store=True, string="Total income")
     computed_total = fields.Float(compute='compute_total', store=True, string="Left over")
-    income_id = fields.Many2many('finance.income', compute='compute_income', store=True)
-    expense_id = fields.Many2many('finance.expense', compute='compute_expenses', store=True)
+    income_id = fields.Many2many('finance.income', compute='compute_income')
+    expense_id = fields.Many2many('finance.expense', compute='compute_expenses')
     date = fields.Date('Date', required=True)
     products = fields.Many2many('finance.product', compute='products_in_expense', readonly=True, store=True)
 
@@ -24,7 +24,8 @@ class FinanceBank(models.Model):
         date = datetime.datetime.strptime(self.date, '%Y-%m-%d')
         date_begin = date - relativedelta(months=1)
         date_end = date + relativedelta(months=1)
-        print(date)
+        print(date_begin)
+        print(date_end)
         self.expense_id = self.env['finance.expense'].search([('date', '>', date_begin), ('date', '<', date_end)])
 
     @api.one
