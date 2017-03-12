@@ -4,7 +4,7 @@
  'version': '0.1',
  'author': 'Edem Eminov',
  'description': """
- 'depends': ['base',],
+ 'depends': ['base','finance_module'],
 Getting my sheet together. Finance module for me
 
  """,

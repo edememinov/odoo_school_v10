@@ -89,8 +89,6 @@
             parent="menu_finance_types"
         />
 
-
-
         <act_window id="action_finance_product"
             name="Product"
             res_model="finance.product"
